@@ -1,0 +1,44 @@
+.app {
+  padding: 0 20px;
+  .k-line-chart-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: space-around;
+    .k-line-chart-container {
+      .k-line-chart-title {
+        line-height: 48px;
+        font-size: 24px;
+        color: #333333;
+      }
+      .k-line-chart {
+        width: 600px;
+        height: 280px;
+        background-color: #25272F;
+        border-radius: 2px;
+      }
+      .k-line-chart-setting-container {
+        margin-top: 4px;
+        .k-line-chart-setting-button {
+          line-height: 22px;
+          height: 22px;
+          border: none;
+          outline: none;
+          font-size: 12px;
+          color: #333333;
+          margin-right: 20px;
+          background-color: transparent;
+          border-radius: 2px;
+          cursor: pointer;
+          &:hover {
+            background-color: #e1eff9;
+          }
+        }
+        .k-line-chart-setting-button-selected {
+          background-color: #e1eff9;
+        }
+      }
+    }
+  }
+
+}
