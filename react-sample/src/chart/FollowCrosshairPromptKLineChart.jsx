@@ -7,7 +7,9 @@ export default function FollowCrosshairPromptKLineChart () {
     const kLineChart = init('follow-crosshair-prompt-k-line')
     kLineChart.setStyleOptions({
       floatLayer: {
-        displayRule: 'follow_cross'
+        prompt: {
+          displayRule: 'follow_cross'
+        }
       }
     })
     kLineChart.applyNewData(generatedKLineDataList())
