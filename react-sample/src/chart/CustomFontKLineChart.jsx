@@ -96,7 +96,7 @@ export default function CustomFontKLineChart () {
           Arial 12
         </button>
         <button
-          className="k-line-chart-setting-button"
+          className={`k-line-chart-setting-button ${fontType === 1 && 'k-line-chart-setting-button-selected'}`}
           onClick={() => {
             kLineChart.setStyleOptions(getChartFontOptions('Arial', 14))
             setFontType(1)
@@ -104,7 +104,7 @@ export default function CustomFontKLineChart () {
           Arial 14
         </button>
         <button
-          className="k-line-chart-setting-button"
+          className={`k-line-chart-setting-button ${fontType === 2 && 'k-line-chart-setting-button-selected'}`}
           onClick={() => {
             kLineChart.setStyleOptions(getChartFontOptions('Courier New', 12))
             setFontType(2)
@@ -112,7 +112,7 @@ export default function CustomFontKLineChart () {
           Courier New 12
         </button>
         <button
-          className="k-line-chart-setting-button"
+          className={`k-line-chart-setting-button ${fontType === 3 && 'k-line-chart-setting-button-selected'}`}
           onClick={() => {
             kLineChart.setStyleOptions(getChartFontOptions('Times New Roman', 14))
             setFontType(3)

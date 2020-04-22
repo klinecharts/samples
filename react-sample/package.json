@@ -2,7 +2,6 @@
   "name": "react-sample",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://liihuu.github.io/KLineChartSample",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
