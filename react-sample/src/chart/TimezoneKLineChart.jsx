@@ -36,7 +36,7 @@ export default function TimezoneKLineChart () {
             kLineChart.setTimezone('Europe/Berlin')
             setTimezone('Europe/Berlin')
           }}>
-          Berlin
+          柏林
         </button>
         <button
           className={`k-line-chart-setting-button ${timezone === 'America/Chicago' && 'k-line-chart-setting-button-selected'}`}
@@ -44,7 +44,7 @@ export default function TimezoneKLineChart () {
             kLineChart.setTimezone('America/Chicago')
             setTimezone('America/Chicago')
           }}>
-          Chicago
+          芝加哥
         </button>
       </div>
     </div>
