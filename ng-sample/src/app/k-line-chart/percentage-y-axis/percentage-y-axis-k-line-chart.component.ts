@@ -5,7 +5,7 @@ import generatedKLineDataList from '../../generatedKLineDataList';
 
 @Component({
   selector: 'app-percentage-y-axis-k-line-chart',
-  templateUrl: './left-percentage-y-axis-k-line-chart.component.html',
+  templateUrl: './percentage-y-axis-k-line-chart.component.html',
 })
 export class PercentageYAxisKLineChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {

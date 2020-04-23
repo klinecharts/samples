@@ -9,7 +9,7 @@ import generatedKLineDataList from '../../generatedKLineDataList';
 })
 export class WithoutYAxisKLineChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
-    const kLineChart: Chart = init('without-y-axis-k-kline');
+    const kLineChart: Chart = init('without-y-axis-k-line');
     kLineChart.setStyleOptions({
       yAxis: {
         display: false
@@ -19,6 +19,6 @@ export class WithoutYAxisKLineChartComponent implements AfterViewInit, OnDestroy
   }
 
   ngOnDestroy(): void {
-    dispose('without-y-axis-k-kline');
+    dispose('without-y-axis-k-line');
   }
 }

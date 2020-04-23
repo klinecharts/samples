@@ -17,7 +17,7 @@ export class TimezoneKLineChartComponent implements AfterViewInit, OnDestroy {
 
   setTimezone(timezone: string) {
     this.timezone = timezone;
-    this.kLineChart.setTimezone(timezone);
+    // this.kLineChart.setTimezone(timezone);
   }
 
   ngOnDestroy(): void {

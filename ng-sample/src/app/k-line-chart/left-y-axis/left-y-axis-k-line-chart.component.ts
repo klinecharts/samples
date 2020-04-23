@@ -9,7 +9,7 @@ import generatedKLineDataList from '../../generatedKLineDataList';
 })
 export class LeftYAxisKLineChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
-    const kLineChart: Chart = init('left-y-axis-k-kline');
+    const kLineChart: Chart = init('left-y-axis-k-line');
     kLineChart.setStyleOptions({
       yAxis: {
         position: 'left'
@@ -19,6 +19,6 @@ export class LeftYAxisKLineChartComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    dispose('left-y-axis-k-kline');
+    dispose('left-y-axis-k-line');
   }
 }

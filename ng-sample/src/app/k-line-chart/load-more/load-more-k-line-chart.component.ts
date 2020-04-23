@@ -11,8 +11,10 @@ export class LoadMoreKLineChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     const kLineChart: Chart = init('load-more-k-line');
     kLineChart.loadMore(timestamp => {
-      const firstData = kLineChart.getDataList()[0];
-      kLineChart.applyMoreData(generatedKLineDataList(timestamp, firstData.close, 100), true);
+      setTimeout(() => {
+        const firstData = kLineChart.getDataList()[0];
+        kLineChart.applyMoreData(generatedKLineDataList(timestamp, firstData.close, 100), true);
+      }, 2000);
       return {};
     });
     kLineChart.applyNewData(generatedKLineDataList(null, null, 200), true);
