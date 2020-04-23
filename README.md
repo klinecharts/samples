@@ -1,5 +1,5 @@
 # KLineChartSample
-KLineChart sample code. Contains multiple front-end framework versions.
+KLineChart(https://github.com/liihuu/KLineChart) sample code. Contains multiple front-end framework versions.
 
 ## Run
 ### React
@@ -13,7 +13,9 @@ cd vue-sample && npm run serve
 ```
 
 ### Angular
-🚧 Under construction
+```bash
+cd ng-sample && npm run start
+```
 
 ## License
 [MIT](./LICENSE)
