@@ -4,17 +4,17 @@ KLineChart(https://github.com/liihuu/KLineChart) sample code. Contains multiple 
 ## Run
 ### React
 ```bash
-cd react-sample && npm run start
+cd react-sample && npm install && npm run start
 ```
 
 ### Vue
 ```bash
-cd vue-sample && npm run serve
+cd vue-sample && npm install && npm run start
 ```
 
 ### Angular
 ```bash
-cd ng-sample && npm run start
+cd ng-sample && npm install && npm run start
 ```
 
 ## License
