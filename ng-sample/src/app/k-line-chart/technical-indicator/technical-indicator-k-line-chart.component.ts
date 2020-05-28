@@ -10,7 +10,7 @@ import generatedKLineDataList from '../../generatedKLineDataList';
 export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     const kLineChart: Chart = init('technical-indicator-k-line');
-    kLineChart.addTechnicalIndicator('VOL', 50);
+    kLineChart.createTechnicalIndicator('VOL', 50);
     kLineChart.applyNewData(generatedKLineDataList());
   }
 

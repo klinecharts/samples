@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import {init, dispose, Chart, TechnicalIndicatorType} from 'klinecharts';
+import { init, dispose, Chart } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -15,7 +15,7 @@ export class CandleStickTechnicalIndicatorSettingKLineChartComponent implements 
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
 
-  setTechnicalIndicatorType(technicalIndicatorType: TechnicalIndicatorType) {
+  setTechnicalIndicatorType(technicalIndicatorType: string) {
     this.technicalIndicatorType = technicalIndicatorType;
     this.kLineChart.setCandleStickTechnicalIndicatorType(technicalIndicatorType);
   }

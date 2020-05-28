@@ -12,6 +12,7 @@ export class CustomTechnicalIndicatorKLineChartComponent implements AfterViewIni
   ngAfterViewInit(): void {
     const kLineChart = init('custom-technical-indicator-k-line');
     kLineChart.addCustomTechnicalIndicator(priceAndVolumeTrend);
+    kLineChart.createTechnicalIndicator('PVT', 50);
     kLineChart.applyNewData(generatedKLineDataList());
   }
 
