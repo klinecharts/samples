@@ -4,6 +4,7 @@ import RealTimeKLineChart from './chart/RealTimeKLineChart'
 import UpdateKLineChart from './chart/UpdateKLineChart'
 import LoadMoreKLineChart from './chart/LoadMoreKLineChart'
 import TechnicalIndicatorKLineChart from './chart/TechnicalIndicatorKLineChart'
+import CustomTechnicalIndicatorKLineChart from './chart/CustomTechnicalIndicatorKLineChart'
 import LeftYAxisKLineChart from './chart/LeftYAxisKLineChart'
 import WithoutYAxisKLineChart from './chart/WithoutYAxisKLineChart'
 import PercentageYAxisKLineChart from './chart/PercentageYAxisKLineChart'
@@ -13,6 +14,7 @@ import CustomFontKLineChart from './chart/CustomFontKLineChart'
 import CustomThemeKLineChart from './chart/CustomThemeKLineChart'
 import CustomLanguageKLineChart from './chart/CustomLanguageKLineChart'
 import FloatPromptKLineChart from './chart/FloatPromptKLineChart'
+import CustomCandleStickLabelKLineChart from './chart/CustomCandleStickLabelKLineChart'
 import FollowCrosshairPromptKLineChart from './chart/FollowCrosshairPromptKLineChart'
 import TechnicalIndicatorLastDataPromptKLineChart from './chart/TechnicalIndicatorLastDataPromptKLineChart'
 import CandleStickTechnicalIndicatorKLineChart from './chart/CandleStickTechnicalIndicatorKLineChart'
@@ -33,30 +35,34 @@ export default function App () {
       </div>
       <div className="k-line-chart-row">
         <TechnicalIndicatorKLineChart/>
+        <CustomTechnicalIndicatorKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
         <TechnicalIndicatorLastDataPromptKLineChart/>
-      </div>
-      <div className="k-line-chart-row">
         <LeftYAxisKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
         <WithoutYAxisKLineChart/>
-      </div>
-      <div className="k-line-chart-row">
         <PercentageYAxisKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
         <YAxisTextInsideKLineChart/>
-      </div>
-      <div className="k-line-chart-row">
         <CustomFontKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
         <CustomThemeKLineChart/>
-      </div>
-      <div className="k-line-chart-row">
         <CustomLanguageKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
         <TimezoneKLineChart/>
-      </div>
-      <div className="k-line-chart-row">
         <CandleStickTechnicalIndicatorKLineChart/>
-        <DrawGraphicMarkKLineChart/>
       </div>
       <div className="k-line-chart-row">
+        <DrawGraphicMarkKLineChart/>
         <FloatPromptKLineChart/>
+      </div>
+      <div className="k-line-chart-row">
+        <CustomCandleStickLabelKLineChart/>
         <FollowCrosshairPromptKLineChart/>
       </div>
     </div>

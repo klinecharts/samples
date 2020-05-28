@@ -5,7 +5,7 @@ import generatedKLineDataList from '../utils/generatedKLineDataList'
 export default function BasicKLineChart () {
   useEffect(() => {
     const kLineChart = init('technical-indicator-k-line')
-    kLineChart.addTechnicalIndicator('VOL', 50)
+    kLineChart.createTechnicalIndicator('VOL', 50)
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {
       dispose('technical-indicator-k-line')
