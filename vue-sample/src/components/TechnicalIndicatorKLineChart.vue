@@ -13,7 +13,7 @@
     name: 'TechnicalIndicatorKLineChart',
     mounted: function () {
       const kLineChart = init('technical-indicator-k-line')
-      kLineChart.addTechnicalIndicator('VOL', 50)
+      kLineChart.createTechnicalIndicator('VOL', 50)
       kLineChart.applyNewData(generatedKLineDataList())
     },
     destroyed: function () {

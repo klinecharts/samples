@@ -10,31 +10,35 @@
     </div>
     <div class="k-line-chart-row">
       <TechnicalIndicatorKLineChart/>
+      <CustomTechnicalIndicatorKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <TechnicalIndicatorLastDataPromptKLineChart/>
-    </div>
-    <div class="k-line-chart-row">
       <LeftYAxisKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <WithoutYAxisKLineChart/>
-    </div>
-    <div class="k-line-chart-row">
       <PercentageYAxisKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <YAxisTextInsideKLineChart/>
-    </div>
-    <div class="k-line-chart-row">
       <CustomFontKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <CustomThemeKLineChart/>
-    </div>
-    <div class="k-line-chart-row">
       <CustomLanguageKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <TimezoneKLineChart/>
-    </div>
-    <div class="k-line-chart-row">
       <CandleStickTechnicalIndicatorKLineChart/>
-      <DrawGraphicMarkKLineChart/>
     </div>
     <div class="k-line-chart-row">
+      <DrawGraphicMarkKLineChart/>
       <FloatPromptKLineChart/>
+    </div>
+    <div class="k-line-chart-row">
       <FollowCrosshairPromptKLineChart/>
+      <CustomCandleStickLabelKLineChart/>
     </div>
   </div>
 </template>
@@ -45,6 +49,7 @@ import RealTimeKLineChart from './components/RealTimeKLineChart'
 import UpdateKLineChart from './components/UpdateKLineChart'
 import LoadMoreKLineChart from './components/LoadMoreKLineChart'
 import TechnicalIndicatorKLineChart from './components/TechnicalIndicatorKLineChart'
+import CustomTechnicalIndicatorKLineChart from './components/CustomTechnicalIndicatorKLineChart'
 import TechnicalIndicatorLastDataPromptKLineChart from './components/TechnicalIndicatorLastDataPromptKLineChart'
 import LeftYAxisKLineChart from './components/LeftYAxisKLineChart'
 import WithoutYAxisKLineChart from './components/WithoutYAxisKLineChart'
@@ -58,6 +63,7 @@ import CandleStickTechnicalIndicatorKLineChart from './components/CandleStickTec
 import DrawGraphicMarkKLineChart from './components/DrawGraphicMarkKLineChart'
 import FloatPromptKLineChart from './components/FloatPromptKLineChart'
 import FollowCrosshairPromptKLineChart from './components/FollowCrosshairPromptKLineChart'
+import CustomCandleStickLabelKLineChart from './components/CustomCandleStickLabelKLineChart'
 
 export default {
   name: 'App',
@@ -67,6 +73,7 @@ export default {
     UpdateKLineChart,
     LoadMoreKLineChart,
     TechnicalIndicatorKLineChart,
+    CustomTechnicalIndicatorKLineChart,
     TechnicalIndicatorLastDataPromptKLineChart,
     LeftYAxisKLineChart,
     WithoutYAxisKLineChart,
@@ -79,7 +86,8 @@ export default {
     CandleStickTechnicalIndicatorKLineChart,
     DrawGraphicMarkKLineChart,
     FloatPromptKLineChart,
-    FollowCrosshairPromptKLineChart
+    FollowCrosshairPromptKLineChart,
+    CustomCandleStickLabelKLineChart
   }
 }
 </script>
