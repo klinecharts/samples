@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
+import Layout from '../Layout'
 
 export default function BasicKLineChart () {
   useEffect(() => {
@@ -11,9 +12,9 @@ export default function BasicKLineChart () {
     }
   }, [])
   return (
-    <div className="k-line-chart-container">
-      <p className="k-line-chart-title">基础展示</p>
+    <Layout
+      title="基础展示">
       <div id="basic-k-line" className="k-line-chart"/>
-    </div>
+    </Layout>
   )
 }

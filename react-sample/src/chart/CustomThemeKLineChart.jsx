@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { PureComponent } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
+import Layout from '../Layout'
 
-const textColorDark = '#D9D9D9'
-const gridColorDark = '#393939'
-const axisLineColorDark = '#888888'
+const textColorDark = '#929AA5'
+const gridColorDark = '#292929'
+const axisLineColorDark = '#333333'
+const crossLineColorDark = '#929AA5'
+const crossTextBackgroundColorDark = '#373a40'
 
-const textColorLight = '#7F7F7F'
-const gridColorLight = '#EEEEEE'
-const axisLineColorLight = '#999999'
+const textColorLight = '#76808F'
+const gridColorLight = '#ededed'
+const axisLineColorLight = '#DDDDDD'
+const crossLineColorLight = '#76808F'
+const crossTextBackgroundColorLight = '#686d76'
 
 function getChartTheme (theme) {
   const textColor = theme === 'dark' ? textColorDark : textColorLight
   const gridColor = theme === 'dark' ? gridColorDark : gridColorLight
   const axisLineColor = theme === 'dark' ? axisLineColorDark : axisLineColorLight
+  const crossLineColor = theme === 'dark' ? crossLineColorDark : crossLineColorLight
+  const crossTextBackgroundColor = theme === 'dark' ? crossTextBackgroundColorDark : crossTextBackgroundColorLight
   return {
     grid: {
       horizontal: {
-        display: true,
+        color: gridColor
+      },
+      vertical: {
         color: gridColor
       }
     },
-    candleStick: {
+    candle: {
       priceMark: {
         high: {
           color: textColor
@@ -29,11 +38,18 @@ function getChartTheme (theme) {
         low: {
           color: textColor
         }
+      },
+      tooltip: {
+        text: {
+          color: textColor
+        }
       }
     },
     technicalIndicator: {
-      line: {
-        colors: [textColor, '#F5A623', '#F601FF', '#1587DD', '#1e88e5']
+      tooltip: {
+        text: {
+          color: textColor
+        }
       }
     },
     xAxis: {
@@ -58,75 +74,79 @@ function getChartTheme (theme) {
         color: textColor
       }
     },
-    floatLayer: {
-      crossHair: {
-        horizontal: {
-          line: {
-            color: axisLineColor
-          }
+    separator: {
+      color: axisLineColor
+    },
+    crosshair: {
+      horizontal: {
+        line: {
+          color: crossLineColor
         },
-        vertical: {
-          line: {
-            color: axisLineColor
-          }
+        text: {
+          backgroundColor: crossTextBackgroundColor
         }
       },
-      prompt: {
-        candleStick: {
-          text: {
-            color: textColor
-          }
+      vertical: {
+        line: {
+          color: crossLineColor
         },
-        technicalIndicator: {
-          text: {
-            color: textColor
-          }
+        text: {
+          backgroundColor: crossTextBackgroundColor
         }
       }
     }
   }
 }
 
-export default function CustomThemeKLineChart () {
-  let kLineChart
-  const [theme, setTheme] = useState('dark')
+export default class CustomThemeKLineChart extends PureComponent {
+  state = {
+    theme: 'dark'
+  }
 
-  useEffect(() => {
-    kLineChart = init('custom-theme-k-line')
-  })
+  componentDidMount () {
+    this.kLineChart = init('custom-theme-k-line')
+    this.kLineChart.applyNewData(generatedKLineDataList())
+  }
 
-  useEffect(() => {
-    kLineChart.applyNewData(generatedKLineDataList())
-    return () => {
-      dispose('custom-theme-k-line')
+  componentWillUnmount () {
+    dispose('custom-theme-k-line')
+  }
+
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    if (prevState.theme !== this.state.theme) {
+      this.kLineChart.setStyleOptions(getChartTheme(this.state.theme))
     }
-  }, [])
+  }
 
-  return (
-    <div className="k-line-chart-container">
-      <p className="k-line-chart-title">自定义主题</p>
-      <div
-        id="custom-theme-k-line"
-        style={theme === 'light' ? { backgroundColor: '#ffffff' } : {}}
-        className="k-line-chart"/>
-      <div className="k-line-chart-setting-container">
-        <button
-          className={`k-line-chart-setting-button ${theme === 'dark' && 'k-line-chart-setting-button-selected'}`}
-          onClick={() => {
-            kLineChart.setStyleOptions(getChartTheme('dark'))
-            setTheme('dark')
-          }}>
-          深色
-        </button>
-        <button
-          className={`k-line-chart-setting-button ${theme === 'light' && 'k-line-chart-setting-button-selected'}`}
-          onClick={() => {
-            kLineChart.setStyleOptions(getChartTheme('light'))
-            setTheme('light')
-          }}>
-          浅色
-        </button>
-      </div>
-    </div>
-  )
+  render () {
+    const { theme } = this.state
+    return (
+      <Layout
+        title="自定义主题">
+        <div
+          id="custom-theme-k-line"
+          style={theme === 'light' ? { backgroundColor: '#ffffff' } : {}}
+          className="k-line-chart"/>
+        <div
+          className="k-line-chart-menu-container">
+          <button
+            onClick={_ => {
+              this.setState({
+                theme: 'dark'
+              })
+            }}>
+            深色
+          </button>
+          <button
+            onClick={_ => {
+              this.setState({
+                theme: 'light'
+              })
+            }}>
+            浅色
+          </button>
+        </div>
+      </Layout>
+    )
+  }
 }
