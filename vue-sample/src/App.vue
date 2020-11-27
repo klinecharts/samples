@@ -10,6 +10,8 @@
     <DrawGraphicMarkKLineChart/>
     <LoadMoreKLineChart/>
     <UpdateKLineChart/>
+    <CustomCandleMarkKLineChart/>
+    <CustomTechnicalIndicatorMarkKLineChart/>
   </div>
 </template>
 
@@ -24,6 +26,8 @@ import TimezoneKLineChart from '@/components/TimezoneKLineChart'
 import DrawGraphicMarkKLineChart from '@/components/DrawGraphicMarkKLineChart'
 import LoadMoreKLineChart from '@/components/LoadMoreKLineChart'
 import UpdateKLineChart from '@/components/UpdateKLineChart'
+import CustomCandleMarkKLineChart from '@/components/CustomCandleMarkKLineChart'
+import CustomTechnicalIndicatorMarkKLineChart from '@/components/CustomTechnicalIndicatorMarkKLineChart'
 
 export default {
   name: 'App',
@@ -37,7 +41,9 @@ export default {
     TimezoneKLineChart,
     DrawGraphicMarkKLineChart,
     LoadMoreKLineChart,
-    UpdateKLineChart
+    UpdateKLineChart,
+    CustomCandleMarkKLineChart,
+    CustomTechnicalIndicatorMarkKLineChart
   }
 }
 </script>
