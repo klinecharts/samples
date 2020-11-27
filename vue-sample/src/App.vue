@@ -8,6 +8,8 @@
     <TooltipKLineChart/>
     <TimezoneKLineChart/>
     <DrawGraphicMarkKLineChart/>
+    <LoadMoreKLineChart/>
+    <UpdateKLineChart/>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import LanguageKLineChart from '@/components/LanguageKLineChart'
 import TooltipKLineChart from '@/components/TooltipKLineChart'
 import TimezoneKLineChart from '@/components/TimezoneKLineChart'
 import DrawGraphicMarkKLineChart from '@/components/DrawGraphicMarkKLineChart'
+import LoadMoreKLineChart from '@/components/LoadMoreKLineChart'
+import UpdateKLineChart from '@/components/UpdateKLineChart'
 
 export default {
   name: 'App',
@@ -31,7 +35,9 @@ export default {
     LanguageKLineChart,
     TooltipKLineChart,
     TimezoneKLineChart,
-    DrawGraphicMarkKLineChart
+    DrawGraphicMarkKLineChart,
+    LoadMoreKLineChart,
+    UpdateKLineChart
   }
 }
 </script>
