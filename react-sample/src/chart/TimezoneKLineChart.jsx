@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
+import Layout from '../Layout'
+
+const timezones = [
+  { key: 'Asia/Shanghai', text: '上海' },
+  { key: 'Europe/Berlin', text: '柏林' },
+  { key: 'America/Chicago', text: '芝加哥' }
+]
 
 export default function TimezoneKLineChart () {
   let kLineChart
-  const [timezone, setTimezone] = useState('')
-
   useEffect(() => {
     kLineChart = init('timezone-k-line')
-  })
-
-  useEffect(() => {
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {
       dispose('timezone-k-line')
@@ -18,35 +20,26 @@ export default function TimezoneKLineChart () {
   }, [])
 
   return (
-    <div className="k-line-chart-container">
-      <p className="k-line-chart-title">时区设置</p>
-      <div id="timezone-k-line" className="k-line-chart"/>
-      <div className="k-line-chart-setting-container">
-        <button
-          className={`k-line-chart-setting-button ${timezone === 'Asia/Shanghai' && 'k-line-chart-setting-button-selected'}`}
-          onClick={() => {
-            kLineChart.setTimezone('Asia/Shanghai')
-            setTimezone('Asia/Shanghai')
-          }}>
-          上海
-        </button>
-        <button
-          className={`k-line-chart-setting-button ${timezone === 'Europe/Berlin' && 'k-line-chart-setting-button-selected'}`}
-          onClick={() => {
-            kLineChart.setTimezone('Europe/Berlin')
-            setTimezone('Europe/Berlin')
-          }}>
-          柏林
-        </button>
-        <button
-          className={`k-line-chart-setting-button ${timezone === 'America/Chicago' && 'k-line-chart-setting-button-selected'}`}
-          onClick={() => {
-            kLineChart.setTimezone('America/Chicago')
-            setTimezone('America/Chicago')
-          }}>
-          芝加哥
-        </button>
+    <Layout
+      title="时区设置">
+      <div
+        id="timezone-k-line" className="k-line-chart"/>
+      <div
+        className="k-line-chart-menu-container">
+        {
+          timezones.map(({ key, text }) => {
+            return (
+              <button
+                key={key}
+                onClick={_ => {
+                  kLineChart.setTimezone(key)
+                }}>
+                {text}
+              </button>
+            )
+          })
+        }
       </div>
-    </div>
+    </Layout>
   )
 }

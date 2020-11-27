@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
+import Layout from '../Layout'
 
 export default function LoadMoreKLineChart () {
   useEffect(() => {
     const kLineChart = init('load-more-k-line')
-    kLineChart.applyNewData(generatedKLineDataList(null, null, 200), true)
+    kLineChart.applyNewData(generatedKLineDataList(Date.now(), 5000, 200), true)
     kLineChart.loadMore(timestamp => {
       setTimeout(() => {
         const firstData = kLineChart.getDataList()[0]
@@ -17,9 +18,9 @@ export default function LoadMoreKLineChart () {
     }
   }, [])
   return (
-    <div className="k-line-chart-container">
-      <p className="k-line-chart-title">加载历史数据</p>
+    <Layout
+      title="加载历史数据">
       <div id="load-more-k-line" className="k-line-chart"/>
-    </div>
+    </Layout>
   )
 }

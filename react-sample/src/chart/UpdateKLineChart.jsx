@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
+import Layout from '../Layout'
 
 export default function UpdateKLineChart () {
   function updateData (kLineChart) {
@@ -9,6 +10,7 @@ export default function UpdateKLineChart () {
         const dataList = kLineChart.getDataList()
         const lastData = dataList[dataList.length - 1]
         const newData = generatedKLineDataList(lastData.timestamp, lastData.close, 1)[0]
+        newData.timestamp += 1000 * 60
         kLineChart.updateData(newData)
       }
       updateData(kLineChart)
@@ -24,9 +26,9 @@ export default function UpdateKLineChart () {
     }
   }, [])
   return (
-    <div className="k-line-chart-container">
-      <p className="k-line-chart-title">仿真实时</p>
+    <Layout
+      title="实时更新">
       <div id="update-k-line" className="k-line-chart"/>
-    </div>
+    </Layout>
   )
 }

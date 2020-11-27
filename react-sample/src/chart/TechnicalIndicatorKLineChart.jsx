@@ -49,7 +49,7 @@ export default function TechnicalIndicatorKLineChart () {
     kLineChart = init('technical-indicator-k-line')
     // 将自定义技术指标添加到图表
     kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator)
-    paneTag = kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 80 })
+    paneTag = kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 100 })
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {
       dispose('technical-indicator-k-line')
