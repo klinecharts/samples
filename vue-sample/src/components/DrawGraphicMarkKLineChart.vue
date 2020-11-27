@@ -1,48 +1,40 @@
 <template>
-  <div class="k-line-chart-container">
-    <p class="k-line-chart-title">添加标记图形</p>
+  <Layout title="画线">
     <div
       id="draw-graphic-mark-k-line"
       class="k-line-chart"/>
-    <div class="k-line-chart-setting-container">
+    <div
+      class="k-line-chart-menu-container">
       <button
-        v-on:click="setGraphicMarkType('priceLine')"
-        class="k-line-chart-setting-button">
-        价格线
+        v-for="({ key, text }) in drawLines"
+        :key="key"
+        v-on:click="setGraphicMarkType(key)">
+        {{text}}
       </button>
       <button
-        v-on:click="setGraphicMarkType('priceChannelLine')"
-        class="k-line-chart-setting-button">
-        价格通道线
-      </button>
-      <button
-        v-on:click="setGraphicMarkType('parallelStraightLine')"
-        class="k-line-chart-setting-button">
-        平行直线
-      </button>
-      <button
-        v-on:click="setGraphicMarkType('fibonacciLine')"
-        class="k-line-chart-setting-button">
-        斐波那契回调
-      </button>
-      <button
-        v-on:click="removeAllGraphicMark()"
-        class="k-line-chart-setting-button">
+        v-on:click="removeAllGraphicMark()">
         清除
       </button>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
   import {dispose, init} from "klinecharts"
   import generatedKLineDataList from "../generatedKLineDataList"
+  import Layout from "@/Layout"
 
   export default {
     name: 'DrawGraphicMarkKLineChart',
+    components: {Layout},
     data: function () {
       return {
-        graphicMarkType: 'Asia/Shanghai'
+        drawLines: [
+          { key: 'priceLine', text: '价格线' },
+          { key: 'priceChannelLine', text: '价格通道线' },
+          { key: 'parallelStraightLine', text: '平行直线' },
+          { key: 'fibonacciLine', text: '斐波那契回调' }
+        ]
       }
     },
     mounted: function () {
@@ -51,7 +43,6 @@
     },
     methods: {
       setGraphicMarkType: function (graphicMarkType) {
-        this.graphicMarkType = graphicMarkType
         this.kLineChart.addGraphicMark(graphicMarkType)
       },
       removeAllGraphicMark () {

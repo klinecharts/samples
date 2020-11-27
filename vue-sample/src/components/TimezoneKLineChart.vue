@@ -1,41 +1,35 @@
 <template>
-  <div class="k-line-chart-container">
-    <p class="k-line-chart-title">时区设置</p>
+  <Layout title="时区设置">
     <div
       id="timezone-k-line"
       class="k-line-chart"/>
-    <div class="k-line-chart-setting-container">
-      <button
-        v-on:click="setTimezone('Asia/Shanghai')"
-        class="k-line-chart-setting-button"
-        v-bind:class="{'k-line-chart-setting-button-selected': timezone === 'Asia/Shanghai'}">
-        上海
-      </button>
-      <button
-        v-on:click="setTimezone('Europe/Berlin')"
-        class="k-line-chart-setting-button"
-        v-bind:class="{'k-line-chart-setting-button-selected': timezone === 'Europe/Berlin'}">
-        柏林
-      </button>
-      <button
-        v-on:click="setTimezone('America/Chicago')"
-        class="k-line-chart-setting-button"
-        v-bind:class="{'k-line-chart-setting-button-selected': timezone === 'America/Chicago'}">
-        芝加哥
-      </button>
-    </div>
-  </div>
+      <div
+        class="k-line-chart-menu-container">
+        <button
+          v-for="({ key, text }) in timezones"
+          :key="key"
+          v-on:click="setTimezone(key)">
+          {{text}}
+        </button>
+      </div>
+  </Layout>
 </template>
 
 <script>
   import {dispose, init} from "klinecharts"
   import generatedKLineDataList from "../generatedKLineDataList"
+  import Layout from "@/Layout"
 
   export default {
     name: 'TimezoneKLineChart',
+    components: {Layout},
     data: function () {
       return {
-        timezone: 'Asia/Shanghai'
+        timezones: [
+          { key: 'Asia/Shanghai', text: '上海' },
+          { key: 'Europe/Berlin', text: '柏林' },
+          { key: 'America/Chicago', text: '芝加哥' }
+        ]
       }
     },
     mounted: function () {
@@ -44,7 +38,6 @@
     },
     methods: {
       setTimezone: function (timezone) {
-        this.timezone = timezone
         this.kLineChart.setTimezone(timezone)
       }
     },
