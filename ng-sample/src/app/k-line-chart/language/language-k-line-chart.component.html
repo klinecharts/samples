@@ -1,0 +1,20 @@
+<app-layout title="多语言">
+  <div id="language-k-line" class="k-line-chart"></div>
+  <div class="k-line-chart-menu-container">
+    <button
+      class="k-line-chart-setting-button"
+      (click)="setLanguage('zh-CN')">
+      简体中文
+    </button>
+    <button
+      class="k-line-chart-setting-button"
+      (click)="setLanguage('zh-HK')">
+      繁體中文
+    </button>
+    <button
+      class="k-line-chart-setting-button"
+      (click)="setLanguage('en-US')">
+      English
+    </button>
+  </div>
+</app-layout>

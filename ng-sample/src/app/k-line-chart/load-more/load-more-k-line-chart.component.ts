@@ -17,7 +17,7 @@ export class LoadMoreKLineChartComponent implements AfterViewInit, OnDestroy {
       }, 2000);
       return {};
     });
-    kLineChart.applyNewData(generatedKLineDataList(null, null, 200), true);
+    kLineChart.applyNewData(generatedKLineDataList(Date.now(), 5000, 200), true);
   }
 
   ngOnDestroy(): void {

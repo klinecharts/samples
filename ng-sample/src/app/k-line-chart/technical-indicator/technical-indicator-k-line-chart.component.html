@@ -1,4 +1,26 @@
-<div class="k-line-chart-container">
-  <p class="k-line-chart-title">技术指标</p>
+<app-layout title="技术指标">
   <div id="technical-indicator-k-line" class="k-line-chart"></div>
-</div>
+  <div
+    class="k-line-chart-menu-container">
+    <span style="padding-right: 10px">主图指标</span>
+    <button
+      *ngFor="let type of mainTechnicalIndicatorTypes"
+      (click)="setCandleTechnicalIndicator(type)">
+      {{type}}
+    </button>
+    <button
+      (click)="setCandleTechnicalIndicator('EMOJI')">
+      自定义
+    </button>
+    <span style="padding-right: 10px;padding-left: 12px">副图指标</span>
+    <button
+      *ngFor="let type of subTechnicalIndicatorTypes"
+      (click)="setSubTechnicalIndicator(type)">
+      {{type}}
+    </button>
+    <button
+      (click)="setSubTechnicalIndicator('EMOJI')">
+      自定义
+    </button>
+  </div>
+</app-layout>

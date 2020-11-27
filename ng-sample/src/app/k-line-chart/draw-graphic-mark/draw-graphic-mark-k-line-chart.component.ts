@@ -9,6 +9,14 @@ import generatedKLineDataList from '../../generatedKLineDataList';
 })
 export class DrawGraphicMarkKLineChartComponent implements AfterViewInit, OnDestroy {
   private kLineChart: Chart;
+
+  drawLines = [
+    { key: 'priceLine', text: '价格线' },
+    { key: 'priceChannelLine', text: '价格通道线' },
+    { key: 'parallelStraightLine', text: '平行直线' },
+    { key: 'fibonacciLine', text: '斐波那契回调' }
+  ];
+
   ngAfterViewInit(): void {
     this.kLineChart = init('draw-graphic-mark-k-line');
     this.kLineChart.applyNewData(generatedKLineDataList());
@@ -18,7 +26,7 @@ export class DrawGraphicMarkKLineChartComponent implements AfterViewInit, OnDest
     this.kLineChart.addGraphicMark(graphicMarkType);
   }
 
-  removeAllGraphicMarkType() {
+  removeAllGraphicMark() {
     this.kLineChart.removeAllGraphicMark();
   }
 

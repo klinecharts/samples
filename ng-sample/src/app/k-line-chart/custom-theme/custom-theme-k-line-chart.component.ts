@@ -3,13 +3,15 @@ import { init, dispose, Chart } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
-const textColorDark = '#D9D9D9';
-const gridColorDark = '#393939';
-const axisLineColorDark = '#888888';
+const textColorDark = '#929AA5';
+const gridColorDark = '#292929';
+const axisLineColorDark = '#333333';
+const crossTextBackgroundColorDark = '#373a40';
 
-const textColorLight = '#7F7F7F';
-const gridColorLight = '#EEEEEE';
-const axisLineColorLight = '#999999';
+const textColorLight = '#76808F';
+const gridColorLight = '#ededed';
+const axisLineColorLight = '#DDDDDD';
+const crossTextBackgroundColorLight = '#686d76';
 
 @Component({
   selector: 'app-custom-theme-k-kline-chart',
@@ -28,14 +30,18 @@ export class CustomThemeKLineChartComponent implements AfterViewInit, OnDestroy 
     const textColor = theme === 'dark' ? textColorDark : textColorLight;
     const gridColor = theme === 'dark' ? gridColorDark : gridColorLight;
     const axisLineColor = theme === 'dark' ? axisLineColorDark : axisLineColorLight;
+    const crossLineColor = theme === 'dark' ? axisLineColorDark : axisLineColorLight;
+    const crossTextBackgroundColor = theme === 'dark' ? crossTextBackgroundColorDark : crossTextBackgroundColorLight;
     this.kLineChart.setStyleOptions({
       grid: {
         horizontal: {
-          display: true,
+          color: gridColor
+        },
+        vertical: {
           color: gridColor
         }
       },
-      candleStick: {
+      candle: {
         priceMark: {
           high: {
             color: textColor
@@ -43,11 +49,18 @@ export class CustomThemeKLineChartComponent implements AfterViewInit, OnDestroy 
           low: {
             color: textColor
           }
+        },
+        tooltip: {
+          text: {
+            color: textColor
+          }
         }
       },
       technicalIndicator: {
-        line: {
-          colors: [textColor, '#F5A623', '#F601FF', '#1587DD', '#1e88e5']
+        tooltip: {
+          text: {
+            color: textColor
+          }
         }
       },
       xAxis: {
@@ -72,29 +85,24 @@ export class CustomThemeKLineChartComponent implements AfterViewInit, OnDestroy 
           color: textColor
         }
       },
-      floatLayer: {
-        crossHair: {
-          horizontal: {
-            line: {
-              color: axisLineColor
-            }
+      separator: {
+        color: axisLineColor
+      },
+      crosshair: {
+        horizontal: {
+          line: {
+            color: crossLineColor
           },
-          vertical: {
-            line: {
-              color: axisLineColor
-            }
+          text: {
+            backgroundColor: crossTextBackgroundColor
           }
         },
-        prompt: {
-          candleStick: {
-            text: {
-              color: textColor
-            }
+        vertical: {
+          line: {
+            color: crossLineColor
           },
-          technicalIndicator: {
-            text: {
-              color: textColor
-            }
+          text: {
+            backgroundColor: crossTextBackgroundColor
           }
         }
       }

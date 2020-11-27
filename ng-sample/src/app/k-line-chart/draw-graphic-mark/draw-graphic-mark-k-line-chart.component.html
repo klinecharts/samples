@@ -1,31 +1,14 @@
-<div class="k-line-chart-container">
-  <p class="k-line-chart-title">添加标记图形</p>
+<app-layout title="画线">
   <div id="draw-graphic-mark-k-line" class="k-line-chart"></div>
-  <div class="k-line-chart-setting-container">
+  <div class="k-line-chart-menu-container">
     <button
-      class="k-line-chart-setting-button"
-      (click)="setGraphicMarkType('priceLine')">
-      价格线
+      *ngFor="let line of drawLines"
+      (click)="setGraphicMarkType(line.key)">
+      {{line.text}}
     </button>
     <button
-      class="k-line-chart-setting-button"
-      (click)="setGraphicMarkType('priceChannelLine')">
-      价格通道线
-    </button>
-    <button
-      class="k-line-chart-setting-button"
-      (click)="setGraphicMarkType('parallelStraightLine')">
-      平行直线
-    </button>
-    <button
-      class="k-line-chart-setting-button"
-      (click)="setGraphicMarkType('fibonacciLine')">
-      斐波那契回调
-    </button>
-    <button
-      class="k-line-chart-setting-button"
-      (click)="removeAllGraphicMarkType()">
-      斐波那契回调
+      (click)="removeAllGraphicMark()">
+      清除
     </button>
   </div>
-</div>
+</app-layout>

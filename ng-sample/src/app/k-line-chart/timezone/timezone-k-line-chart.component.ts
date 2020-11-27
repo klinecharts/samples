@@ -8,15 +8,20 @@ import generatedKLineDataList from '../../generatedKLineDataList';
   templateUrl: './timezone-k-line-chart.component.html',
 })
 export class TimezoneKLineChartComponent implements AfterViewInit, OnDestroy {
-  timezone = 'Asia/Shanghai';
   private kLineChart: Chart;
+
+  timezones = [
+    { key: 'Asia/Shanghai', text: '上海' },
+    { key: 'Europe/Berlin', text: '柏林' },
+    { key: 'America/Chicago', text: '芝加哥' }
+  ];
+
   ngAfterViewInit(): void {
     this.kLineChart = init('timezone-k-line');
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
 
   setTimezone(timezone: string) {
-    this.timezone = timezone;
     this.kLineChart.setTimezone(timezone);
   }
 

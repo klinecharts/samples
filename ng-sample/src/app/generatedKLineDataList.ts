@@ -17,7 +17,6 @@ export default function(baseTimestamp: number = Date.now(), basePrice: number = 
       closeIdx++;
     }
     const volume = Math.random() * 50 + 10;
-    timestamp -= 60 * 1000;
     const kLineModel: KLineData = {
       open: prices[openIdx],
       low: prices[0],
@@ -26,6 +25,7 @@ export default function(baseTimestamp: number = Date.now(), basePrice: number = 
       volume,
       timestamp
     };
+    timestamp -= 60 * 1000;
     kLineModel.turnover = (kLineModel.open + kLineModel.close + kLineModel.high + kLineModel.low) / 4 * volume;
     dataList.unshift(kLineModel);
   }

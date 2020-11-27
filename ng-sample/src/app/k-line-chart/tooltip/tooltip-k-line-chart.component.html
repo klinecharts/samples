@@ -1,0 +1,33 @@
+<app-layout title="十字光标文字提示">
+  <div id="tooltip-k-line" class="k-line-chart"></div>
+  <div
+    class="k-line-chart-menu-container">
+    <span style="padding-right: 10px">主图显示类型</span>
+    <button
+      (click)="setCandleShowType('standard')">
+      默认
+    </button>
+    <button
+      (click)="setCandleShowType('rect')">
+      矩形框
+    </button>
+  </div>
+  <div
+    class="k-line-chart-menu-container">
+    <span style="padding-right: 10px">k线提示显示规则</span>
+    <button
+      *ngFor="let rule of rules"
+      (click)="setCandleShowRule(rule.key)">
+      {{rule.text}}
+    </button>
+  </div>
+  <div
+    class="k-line-chart-menu-container">
+    <span style="padding-right: 10px">指标提示显示规则</span>
+    <button
+      *ngFor="let rule of rules"
+      (click)="setTechnicalIndicatorShowRule(rule.key)">
+      {{rule.text}}
+    </button>
+  </div>
+</app-layout>

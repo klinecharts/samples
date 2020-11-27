@@ -1,0 +1,11 @@
+<app-layout title="图表类型">
+  <div id="chart-type-k-line" class="k-line-chart"></div>
+  <div
+    class="k-line-chart-menu-container">
+    <button
+      *ngFor="let type of chartTypes"
+      (click)="setChartType(type.key)">
+      {{type.text}}
+    </button>
+  </div>
+</app-layout>

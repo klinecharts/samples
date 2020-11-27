@@ -20,6 +20,7 @@ export class UpdateKLineChartComponent implements AfterViewInit, OnDestroy {
       const dataList: KLineData[] = this.kLineChart.getDataList();
       const lastData = dataList[dataList.length - 1];
       const newData = generatedKLineDataList(lastData.timestamp, lastData.close, 1)[0];
+      newData.timestamp += 60 * 1000;
       this.kLineChart.updateData(newData);
       this.updateData();
     }, 1000);
