@@ -49,12 +49,12 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
 
   private kLineChart: Chart;
 
-  private pangTag: string;
+  private paneTag: string;
 
   ngAfterViewInit(): void {
     this.kLineChart = init('technical-indicator-k-line');
     this.kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator);
-    // this.paneTag = this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 100 });
+    this.paneTag = this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 100 });
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
 
@@ -63,7 +63,7 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
   }
 
   setSubTechnicalIndicator(type) {
-    this.kLineChart.setTechnicalIndicatorType(type, true, this.pangTag);
+    this.kLineChart.setTechnicalIndicatorType(type, true, this.paneTag);
   }
 
   ngOnDestroy(): void {

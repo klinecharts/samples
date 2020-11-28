@@ -15,7 +15,6 @@ export class TooltipKLineChartComponent implements AfterViewInit, OnDestroy {
   private technicalIndicatorShowRule = 'always';
 
   private kLineChart: Chart;
-
   rules = [
     { key: 'always', text: '总是显示' },
     { key: 'follow_cross', text: '跟随十字光标' },
@@ -24,6 +23,8 @@ export class TooltipKLineChartComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.kLineChart = init('tooltip-k-line');
+    this.kLineChart.setTechnicalIndicatorType('MA', true);
+    this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'KDJ', height: 60 });
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
 
