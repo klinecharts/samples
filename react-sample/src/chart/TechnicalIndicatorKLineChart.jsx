@@ -68,7 +68,7 @@ export default function TechnicalIndicatorKLineChart () {
               <button
                 key={type}
                 onClick={_ => {
-                  kLineChart.setTechnicalIndicatorType(type, true)
+                  kLineChart.setTechnicalIndicatorType(type)
                 }}>
                 {type}
               </button>
@@ -77,7 +77,7 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            kLineChart.setTechnicalIndicatorType('EMOJI', true)
+            kLineChart.setTechnicalIndicatorType('EMOJI')
           }}>
           自定义
         </button>
@@ -88,7 +88,7 @@ export default function TechnicalIndicatorKLineChart () {
               <button
                 key={type}
                 onClick={_ => {
-                  kLineChart.setTechnicalIndicatorType(type, true, paneTag)
+                  kLineChart.setTechnicalIndicatorType(type, false, paneTag)
                 }}>
                 {type}
               </button>
@@ -97,7 +97,7 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            kLineChart.setTechnicalIndicatorType('EMOJI', true, paneTag)
+            kLineChart.setTechnicalIndicatorType('EMOJI', false, paneTag)
           }}>
           自定义
         </button>

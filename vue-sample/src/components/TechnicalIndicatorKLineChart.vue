@@ -87,10 +87,10 @@
     },
     methods: {
       setCandleTechnicalIndicator: function (type) {
-        this.kLineChart.setTechnicalIndicatorType(type, true)
+        this.kLineChart.setTechnicalIndicatorType(type)
       },
       setSubTechnicalIndicator: function (type) {
-        this.kLineChart.setTechnicalIndicatorType(type, true, this.paneTag)
+        this.kLineChart.setTechnicalIndicatorType(type, false, this.paneTag)
       },
     },
     destroyed: function () {

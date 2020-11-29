@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "klinecharts": "^5.7.0",
-    "klinecharts-technical-indicator": "^1.1.0",
+    "klinecharts": "^6.0.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {

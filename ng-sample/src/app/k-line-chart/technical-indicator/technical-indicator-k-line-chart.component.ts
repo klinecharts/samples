@@ -59,11 +59,11 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
   }
 
   setCandleTechnicalIndicator(type) {
-    this.kLineChart.setTechnicalIndicatorType(type, true);
+    this.kLineChart.setTechnicalIndicatorType(type);
   }
 
   setSubTechnicalIndicator(type) {
-    this.kLineChart.setTechnicalIndicatorType(type, true, this.paneTag);
+    this.kLineChart.setTechnicalIndicatorType(type, false, this.paneTag);
   }
 
   ngOnDestroy(): void {
