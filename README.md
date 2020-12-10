@@ -17,5 +17,10 @@ cd vue-sample && npm install && npm run start
 cd ng-sample && npm install && npm run start
 ```
 
+### uni-app
+```bash
+cd uniapp-sample && npm install && npm run serve
+```
+
 ## License
 [MIT](./LICENSE)
