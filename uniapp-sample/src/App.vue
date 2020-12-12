@@ -11,10 +11,9 @@
 
 <style>
 	body {
-		height: 100%;
 		background-color: #1e2126;
 	}
-	#app {
+	page {
 		height: 100%;
 	}
 </style>

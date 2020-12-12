@@ -52,6 +52,6 @@
 
 <style>
 	.content {
-		height: calc(100% - 60rpx);
+		height: calc(100% - 80rpx);
 	}
 </style>
