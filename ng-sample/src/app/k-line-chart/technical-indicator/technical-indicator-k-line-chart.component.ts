@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { init, dispose, Chart, TechnicalIndicatorInfo } from 'klinecharts';
+import { init, dispose, Chart, TechnicalIndicator } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -10,7 +10,7 @@ const fruits = [
 ];
 
 // 自定义指标
-const emojiTechnicalIndicator: TechnicalIndicatorInfo = {
+const emojiTechnicalIndicator: TechnicalIndicator = {
   name: 'EMOJI',
   plots: [
     { key: 'emoji' }

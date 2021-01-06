@@ -1,10 +1,10 @@
-<app-layout title="画线">
+<app-layout title="绘图">
   <div id="draw-graphic-mark-k-line" class="k-line-chart"></div>
   <div class="k-line-chart-menu-container">
     <button
-      *ngFor="let line of drawLines"
-      (click)="setGraphicMarkType(line.key)">
-      {{line.text}}
+      *ngFor="let graphic of drawGraphics"
+      (click)="setGraphicMarkType(graphic.key)">
+      {{graphic.text}}
     </button>
     <button
       (click)="removeAllGraphicMark()">
