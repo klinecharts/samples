@@ -2,10 +2,10 @@ import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import {
   init, dispose,
   Chart, GraphicMark, GraphicMarkDataSourceDrawType,
-  GraphicMarkDataSourceItem, XYPoint, TimestampPricePoint
+  GraphicMarkDataSourceItem, CoordinatePoint, TimestampPricePoint
 } from 'klinecharts';
 
-import { checkPointOnSegmentLine } from 'klinecharts/lib/mark/graphicHelper';
+import { checkPointOnSegment } from 'klinecharts/lib/mark/graphicHelper';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -13,16 +13,17 @@ const rect: GraphicMark = {
   name: 'rect',
   totalStep: 3,
   checkMousePointOn: (
+    key: string,
     type: GraphicMarkDataSourceDrawType,
     points: GraphicMarkDataSourceItem[],
-    mousePoint: XYPoint
+    mousePoint: CoordinatePoint
   ) => {
-    return checkPointOnSegmentLine(points[0], points[1], mousePoint);
+    return checkPointOnSegment(points[0], points[1], mousePoint);
   },
   createGraphicDataSource: (
     step: number,
     tpPoint: TimestampPricePoint[],
-    xyPoints: XYPoint[]
+    xyPoints: CoordinatePoint[]
   ) => {
     if (xyPoints.length === 2) {
       return [
@@ -42,23 +43,23 @@ const rect: GraphicMark = {
           isDraw: true,
           isCheck: false,
           style: 'fill',
-          dataSource: [
+          dataSource: [[
             { ...xyPoints[0] },
             { x: xyPoints[1].x, y: xyPoints[0].y },
             { ...xyPoints[1] },
             { x: xyPoints[0].x, y: xyPoints[1].y }
-          ]
+          ]]
         },
         {
           type: 'polygon',
           isDraw: true,
           isCheck: false,
-          dataSource: [
+          dataSource: [[
             { ...xyPoints[0] },
             { x: xyPoints[1].x, y: xyPoints[0].y },
             { ...xyPoints[1] },
             { x: xyPoints[0].x, y: xyPoints[1].y }
-          ]
+          ]]
         }
       ];
     }
@@ -71,9 +72,10 @@ const circle: GraphicMark = {
   name: 'circle',
   totalStep: 3,
   checkMousePointOn: (
+    key: string,
     type: GraphicMarkDataSourceDrawType,
     points: GraphicMarkDataSourceItem,
-    mousePoint: XYPoint
+    mousePoint: CoordinatePoint
   ) => {
     const xDis = Math.abs(points.x - mousePoint.x);
     const yDis = Math.abs(points.y - mousePoint.y);
@@ -83,7 +85,7 @@ const circle: GraphicMark = {
   createGraphicDataSource(
     step: number,
     tpPoint: TimestampPricePoint[],
-    xyPoints: XYPoint[]
+    xyPoints: CoordinatePoint[]
   ) {
     if (xyPoints.length === 2) {
       const xDis = Math.abs(xyPoints[0].x - xyPoints[1].x);
@@ -141,7 +143,7 @@ export class DrawGraphicMarkKLineChartComponent implements AfterViewInit, OnDest
   }
 
   removeAllGraphicMark() {
-    this.kLineChart.removeAllGraphicMark();
+    this.kLineChart.removeGraphicMark();
   }
 
   ngOnDestroy(): void {

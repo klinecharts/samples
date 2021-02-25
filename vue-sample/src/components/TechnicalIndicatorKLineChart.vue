@@ -82,15 +82,15 @@
     mounted: function () {
       this.kLineChart = init('technical-indicator-k-line')
       this.kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator)
-      this.paneTag = this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 100 })
+      this.paneId = this.kLineChart.createTechnicalIndicator('VOL', false)
       this.kLineChart.applyNewData(generatedKLineDataList())
     },
     methods: {
       setCandleTechnicalIndicator: function (type) {
-        this.kLineChart.setTechnicalIndicatorType(type)
+        this.kLineChart.createTechnicalIndicator(type, false, { id: 'candle_pane' })
       },
       setSubTechnicalIndicator: function (type) {
-        this.kLineChart.setTechnicalIndicatorType(type, false, this.paneTag)
+        this.kLineChart.createTechnicalIndicator(type, false, { id: this.paneId })
       },
     },
     destroyed: function () {

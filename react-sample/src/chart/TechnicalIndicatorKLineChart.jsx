@@ -44,12 +44,12 @@ const subTechnicalIndicatorTypes = ['VOL', 'MACD', 'KDJ']
 
 export default function TechnicalIndicatorKLineChart () {
   let kLineChart
-  let paneTag
+  let paneId
   useEffect(() => {
     kLineChart = init('technical-indicator-k-line')
     // 将自定义技术指标添加到图表
     kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator)
-    paneTag = kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 100 })
+    paneId = kLineChart.createTechnicalIndicator('VOL', false)
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {
       dispose('technical-indicator-k-line')
@@ -68,7 +68,7 @@ export default function TechnicalIndicatorKLineChart () {
               <button
                 key={type}
                 onClick={_ => {
-                  kLineChart.setTechnicalIndicatorType(type)
+                  kLineChart.createTechnicalIndicator(type, false, { id: 'candle_pane' })
                 }}>
                 {type}
               </button>
@@ -77,7 +77,7 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            kLineChart.setTechnicalIndicatorType('EMOJI')
+            kLineChart.createTechnicalIndicator('EMOJI', true, { id: 'candle_pane' })
           }}>
           自定义
         </button>
@@ -88,7 +88,7 @@ export default function TechnicalIndicatorKLineChart () {
               <button
                 key={type}
                 onClick={_ => {
-                  kLineChart.setTechnicalIndicatorType(type, false, paneTag)
+                  kLineChart.createTechnicalIndicator(type, false, { id: paneId })
                 }}>
                 {type}
               </button>
@@ -97,7 +97,7 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            kLineChart.setTechnicalIndicatorType('EMOJI', false, paneTag)
+            kLineChart.createTechnicalIndicator('EMOJI', false, { id: paneId })
           }}>
           自定义
         </button>

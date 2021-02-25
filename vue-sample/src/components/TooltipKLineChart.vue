@@ -86,8 +86,8 @@
     },
     mounted: function () {
       this.kLineChart = init('tooltip-k-line')
-      this.kLineChart.setTechnicalIndicatorType('MA')
-      this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'KDJ', height: 80 })
+      this.kLineChart.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
+      this.kLineChart.createTechnicalIndicator('KDJ', false, { height: 80 })
       this.kLineChart.applyNewData(generatedKLineDataList())
     },
     methods: {

@@ -15,7 +15,7 @@ export default {
   mounted: function () {
     const kLineChart = init('custom-candle-mark-k-line')
     kLineChart.setOffsetRightSpace(200)
-    kLineChart.subscribeDrawAction('drawCandle', (data) => {
+    kLineChart.subscribeAction('drawCandle', (data) => {
       const { ctx, dataIndex, kLineData, coordinate, isCandle } = data
       const dataSize = kLineChart.getDataList().length
       if (isCandle && dataIndex === dataSize - 1) {

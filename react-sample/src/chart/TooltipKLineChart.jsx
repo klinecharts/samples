@@ -47,8 +47,8 @@ export default class TooltipKLineChart extends PureComponent {
   componentDidMount () {
     const { candleShowType, candleShowRule, technicalIndicatorShowRule } = this.state
     this.kLineChart = init('tooltip-k-line')
-    this.kLineChart.setTechnicalIndicatorType('MA')
-    this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'KDJ', height: 80 })
+    this.kLineChart.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
+    this.kLineChart.createTechnicalIndicator('KDJ', false, { height: 80 })
     this.kLineChart.setStyleOptions(getTooltipOptions(
       candleShowType, candleShowRule, technicalIndicatorShowRule
     ))

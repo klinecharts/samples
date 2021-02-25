@@ -14,8 +14,8 @@ export default {
   components: {Layout},
   mounted: function () {
     const kLineChart = init('custom-technical-indicator-mark-k-line')
-    kLineChart.createPane('technicalIndicator', { height: 150 })
-    kLineChart.subscribeDrawAction('drawTechnicalIndicator', (data) => {
+    kLineChart.createTechnicalIndicator('MACD', false, { height: 150 })
+    kLineChart.subscribeAction('drawTechnicalIndicator', (data) => {
       const { ctx, coordinate, technicalIndicatorData } = data
       if (technicalIndicatorData.macd > 5) {
         ctx.font = '12px'

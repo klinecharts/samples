@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
-import { checkPointOnSegmentLine } from 'klinecharts/lib/mark/graphicHelper'
+import { checkPointOnSegment } from 'klinecharts/lib/mark/graphicHelper'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
 
 const rect = {
   name: 'rect',
   totalStep: 3,
-  checkMousePointOn: (type, points, mousePoint) => {
-    return checkPointOnSegmentLine(points[0], points[1], mousePoint)
+  checkMousePointOn: (key, type, points, mousePoint) => {
+    return checkPointOnSegment(points[0], points[1], mousePoint)
   },
   createGraphicDataSource: (step, tpPoint, xyPoints) => {
     if (xyPoints.length === 2) {
@@ -29,23 +29,23 @@ const rect = {
           isDraw: true,
           isCheck: false,
           style: 'fill',
-          dataSource: [
+          dataSource: [[
             { ...xyPoints[0] },
             { x: xyPoints[1].x, y: xyPoints[0].y },
             { ...xyPoints[1] },
             { x: xyPoints[0].x, y: xyPoints[1].y }
-          ]
+          ]]
         },
         {
           type: 'polygon',
           isDraw: true,
           isCheck: false,
-          dataSource: [
+          dataSource: [[
             { ...xyPoints[0] },
             { x: xyPoints[1].x, y: xyPoints[0].y },
             { ...xyPoints[1] },
             { x: xyPoints[0].x, y: xyPoints[1].y }
-          ]
+          ]]
         }
       ]
     }
@@ -56,7 +56,7 @@ const rect = {
 const circle = {
   name: 'circle',
   totalStep: 3,
-  checkMousePointOn: (type, points, mousePoint) => {
+  checkMousePointOn: (key, type, points, mousePoint) => {
     const xDis = Math.abs(points.x - mousePoint.x)
     const yDis = Math.abs(points.y - mousePoint.y)
     const r = Math.sqrt(xDis * xDis + yDis * yDis)
@@ -134,7 +134,7 @@ export default function DrawGraphMarkKLineChart () {
         }
         <button
           onClick={() => {
-            kLineChart.removeAllGraphicMark()
+            kLineChart.removeGraphicMark()
           }}>
           清除
         </button>

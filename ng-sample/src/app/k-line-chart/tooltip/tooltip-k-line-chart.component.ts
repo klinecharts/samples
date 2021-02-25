@@ -23,8 +23,8 @@ export class TooltipKLineChartComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.kLineChart = init('tooltip-k-line');
-    this.kLineChart.setTechnicalIndicatorType('MA', true);
-    this.kLineChart.createPane('technicalIndicator', { technicalIndicatorType: 'KDJ', height: 60 });
+    this.kLineChart.createTechnicalIndicator('MA', false, { id: 'candle_pane' });
+    this.kLineChart.createTechnicalIndicator('KDJ', false, { height: 60 });
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
 

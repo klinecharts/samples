@@ -6,9 +6,9 @@ import Layout from '../Layout'
 export default function CustomTechnicalIndicatorMarkKLineChart () {
   useEffect(() => {
     const kLineChart = init('custom-technical-indicator-mark-k-line')
-    kLineChart.createPane('technicalIndicator', { height: 150 })
+    kLineChart.createTechnicalIndicator('MACD', true, { height: 150 })
     kLineChart.applyNewData(generatedKLineDataList())
-    kLineChart.subscribeDrawAction('drawTechnicalIndicator', (data) => {
+    kLineChart.subscribeAction('drawTechnicalIndicator', (data) => {
       const { ctx, coordinate, technicalIndicatorData } = data
       if (technicalIndicatorData.macd > 5) {
         ctx.font = '12px'
