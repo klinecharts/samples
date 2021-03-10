@@ -38,10 +38,13 @@
 					}
 				}
 			})
-			chart.setTechnicalIndicatorParams('MA', [5, 10, 30])
-			chart.setTechnicalIndicatorType('MA')
-			chart.createPane('technicalIndicator', { technicalIndicatorType: 'VOL', height: 120, dragEnabled: false })
-			chart.createPane('technicalIndicator', { technicalIndicatorType: 'MACD', height: 120, dragEnabled: false })
+			chart.overrideTechnicalIndicator({
+				name: 'MA',
+				calcParams: [5, 10, 30]
+			})
+			chart.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
+			chart.createTechnicalIndicator('VOL', false, { height: 120, dragEnabled: false })
+			chart.createTechnicalIndicator('MACD', false, { height: 120, dragEnabled: false })
 			chart.applyNewData(generatedKLineDataList())
 		},
 		methods: {
