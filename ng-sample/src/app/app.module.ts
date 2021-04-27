@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout.component';
-import { BasicKLineChartComponent } from './k-line-chart/basic/basic-k-line-chart.component';
 import { ChartTypeKLineChartComponent } from './k-line-chart/chart-type/chart-type-k-line-chart.component';
 import { TechnicalIndicatorKLineChartComponent } from './k-line-chart/technical-indicator/technical-indicator-k-line-chart.component';
 import { CustomThemeKLineChartComponent } from './k-line-chart/custom-theme/custom-theme-k-line-chart.component';
@@ -14,13 +13,11 @@ import { DrawGraphicMarkKLineChartComponent } from './k-line-chart/draw-graphic-
 import { LoadMoreKLineChartComponent } from './k-line-chart/load-more/load-more-k-line-chart.component';
 import { UpdateKLineChartComponent } from './k-line-chart/update/update-k-line-chart.component';
 import { CustomCandleMarkKLineChartComponent } from './k-line-chart/custom-candle-mark-k-line-chart/custom-candle-mark-k-line-chart.component';
-import { CustomTechnicalIndicatorMarkKLineChartComponent } from './k-line-chart/custom-technical-indicator-mark-k-line-chart/custom-technical-indicator-mark-k-line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    BasicKLineChartComponent,
     ChartTypeKLineChartComponent,
     TechnicalIndicatorKLineChartComponent,
     CustomThemeKLineChartComponent,
@@ -30,8 +27,7 @@ import { CustomTechnicalIndicatorMarkKLineChartComponent } from './k-line-chart/
     DrawGraphicMarkKLineChartComponent,
     LoadMoreKLineChartComponent,
     UpdateKLineChartComponent,
-    CustomCandleMarkKLineChartComponent,
-    CustomTechnicalIndicatorMarkKLineChartComponent
+    CustomCandleMarkKLineChartComponent
   ],
   imports: [
     BrowserModule

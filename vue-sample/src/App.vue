@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="app">
-    <BasicKLineChart/>
     <ChartTypeKLineChart/>
     <TechnicalIndicatorKLineChart/>
     <CustomThemeKLineChart/>
@@ -8,15 +7,13 @@
     <TooltipKLineChart/>
     <TimezoneKLineChart/>
     <DrawGraphicMarkKLineChart/>
+    <CustomCandleMarkKLineChart/>
     <LoadMoreKLineChart/>
     <UpdateKLineChart/>
-    <CustomCandleMarkKLineChart/>
-    <CustomTechnicalIndicatorMarkKLineChart/>
   </div>
 </template>
 
 <script>
-import BasicKLineChart from '@/components/BasicKLineChart'
 import ChartTypeKLineChart from '@/components/ChartTypeKLineChart'
 import TechnicalIndicatorKLineChart from '@/components/TechnicalIndicatorKLineChart'
 import CustomThemeKLineChart from '@/components/CustomThemeKLineChart'
@@ -24,15 +21,13 @@ import LanguageKLineChart from '@/components/LanguageKLineChart'
 import TooltipKLineChart from '@/components/TooltipKLineChart'
 import TimezoneKLineChart from '@/components/TimezoneKLineChart'
 import DrawGraphicMarkKLineChart from '@/components/DrawGraphicMarkKLineChart'
+import CustomCandleMarkKLineChart from '@/components/CustomCandleMarkKLineChart'
 import LoadMoreKLineChart from '@/components/LoadMoreKLineChart'
 import UpdateKLineChart from '@/components/UpdateKLineChart'
-import CustomCandleMarkKLineChart from '@/components/CustomCandleMarkKLineChart'
-import CustomTechnicalIndicatorMarkKLineChart from '@/components/CustomTechnicalIndicatorMarkKLineChart'
 
 export default {
   name: 'App',
   components: {
-    BasicKLineChart,
     ChartTypeKLineChart,
     TechnicalIndicatorKLineChart,
     CustomThemeKLineChart,
@@ -40,10 +35,9 @@ export default {
     TooltipKLineChart,
     TimezoneKLineChart,
     DrawGraphicMarkKLineChart,
-    LoadMoreKLineChart,
-    UpdateKLineChart,
     CustomCandleMarkKLineChart,
-    CustomTechnicalIndicatorMarkKLineChart
+    LoadMoreKLineChart,
+    UpdateKLineChart
   }
 }
 </script>
