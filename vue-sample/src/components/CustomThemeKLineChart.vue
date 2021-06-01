@@ -3,7 +3,7 @@
     <div
       id="custom-theme-k-line"
       class="k-line-chart"
-      v-bind:style="{backgroundColor: theme === 'light' ? '#FFFFFF' : ''}"/>
+      v-bind:style="{backgroundColor: theme === 'dark' ? '#1f2126' : ''}"/>
     <div
       class="k-line-chart-menu-container">
       <button
@@ -121,7 +121,7 @@
     components: {Layout},
     data: function () {
       return {
-        theme: 'dark'
+        theme: 'light'
       }
     },
     mounted: function () {

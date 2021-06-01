@@ -103,7 +103,7 @@ const themes = [
 
 export default class CustomThemeKLineChart extends PureComponent {
   state = {
-    theme: 'dark'
+    theme: 'light'
   }
 
   componentDidMount () {
@@ -128,7 +128,7 @@ export default class CustomThemeKLineChart extends PureComponent {
         title="自定义主题">
         <div
           id="custom-style-k-line"
-          style={theme === 'light' ? { backgroundColor: '#ffffff' } : {}}
+          style={theme === 'dark' ? { backgroundColor: '#1f2126' } : {}}
           className="k-line-chart"/>
         <div
           className="k-line-chart-menu-container">

@@ -18,7 +18,7 @@ const crossTextBackgroundColorLight = '#686d76';
   templateUrl: './custom-theme-k-line-chart.component.html',
 })
 export class CustomThemeKLineChartComponent implements AfterViewInit, OnDestroy {
-  theme = 'dark';
+  theme = 'light';
   private kLineChart: Chart;
   ngAfterViewInit(): void {
     this.kLineChart = init('custom-theme-k-line');

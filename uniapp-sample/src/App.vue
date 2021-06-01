@@ -11,7 +11,7 @@
 
 <style>
 	body {
-		background-color: #1e2126;
+		background-color: #FFFFFF;
 	}
 	page {
 		height: 100%;

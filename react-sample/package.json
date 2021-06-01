@@ -8,7 +8,7 @@
     "test": "node scripts/test.js"
   },
   "dependencies": {
-    "klinecharts": "^7.3.1",
+    "klinecharts": "^7.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
