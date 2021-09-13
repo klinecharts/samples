@@ -9,7 +9,7 @@ function getTooltipOptions (candleShowType, candleShowRule, technicalIndicatorSh
       tooltip: {
         showType: candleShowType,
         showRule: candleShowRule,
-        labels: ['开盘价', '收盘价', '涨跌幅'],
+        labels: ['开盘价：', '收盘价：', '涨跌幅：'],
         values: kLineData => {
           const change = (kLineData.close - kLineData.open) / kLineData.open * 100
           return [

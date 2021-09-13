@@ -53,16 +53,11 @@
       })
       return result
     },
-    render: (
-      ctx,
-      { from, to, technicalIndicatorDataList },
-      { barSpace },
-      options, xAxis, yAxis
-    ) => {
-      ctx.font = `${barSpace}px Helvetica Neue`
+    render: ({ ctx, dataSource, viewport, xAxis, yAxis }) => {
+      ctx.font = `${viewport.barSpace}px Helvetica Neue`
       ctx.textAlign = 'center'
-      for (let i = from; i < to; i++) {
-        const data = technicalIndicatorDataList[i]
+      for (let i = dataSource.from; i < dataSource.to; i++) {
+        const data = dataSource.technicalIndicatorDataList[i]
         const x = xAxis.convertToPixel(i)
         const y = yAxis.convertToPixel(data.emoji)
         ctx.fillText(data.text, x, y)
@@ -81,7 +76,7 @@
     },
     mounted: function () {
       this.kLineChart = init('technical-indicator-k-line')
-      this.kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator)
+      this.kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator)
       this.paneId = this.kLineChart.createTechnicalIndicator('VOL', false)
       this.kLineChart.applyNewData(generatedKLineDataList())
     },

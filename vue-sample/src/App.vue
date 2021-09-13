@@ -6,7 +6,7 @@
     <LanguageKLineChart/>
     <TooltipKLineChart/>
     <TimezoneKLineChart/>
-    <DrawGraphicMarkKLineChart/>
+    <DrawShapeKLineChart/>
     <CustomCandleMarkKLineChart/>
     <LoadMoreKLineChart/>
     <UpdateKLineChart/>
@@ -20,7 +20,7 @@ import CustomThemeKLineChart from '@/components/CustomThemeKLineChart'
 import LanguageKLineChart from '@/components/LanguageKLineChart'
 import TooltipKLineChart from '@/components/TooltipKLineChart'
 import TimezoneKLineChart from '@/components/TimezoneKLineChart'
-import DrawGraphicMarkKLineChart from '@/components/DrawGraphicMarkKLineChart'
+import DrawShapeKLineChart from '@/components/DrawShapeKLineChart'
 import CustomCandleMarkKLineChart from '@/components/CustomCandleMarkKLineChart'
 import LoadMoreKLineChart from '@/components/LoadMoreKLineChart'
 import UpdateKLineChart from '@/components/UpdateKLineChart'
@@ -34,7 +34,7 @@ export default {
     LanguageKLineChart,
     TooltipKLineChart,
     TimezoneKLineChart,
-    DrawGraphicMarkKLineChart,
+    DrawShapeKLineChart,
     CustomCandleMarkKLineChart,
     LoadMoreKLineChart,
     UpdateKLineChart

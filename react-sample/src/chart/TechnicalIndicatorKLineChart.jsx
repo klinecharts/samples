@@ -22,16 +22,17 @@ const emojiTechnicalIndicator = {
     })
     return result
   },
-  render: (
+  render: ({
     ctx,
-    { from, to, kLineDataList, technicalIndicatorDataList },
-    { barSpace },
-    options, xAxis, yAxis
-  ) => {
-    ctx.font = `${barSpace}px Helvetica Neue`
+    dataSource,
+    viewport,
+    xAxis,
+    yAxis
+  }) => {
+    ctx.font = `${viewport.barSpace}px Helvetica Neue`
     ctx.textAlign = 'center'
-    for (let i = from; i < to; i++) {
-      const data = technicalIndicatorDataList[i]
+    for (let i = dataSource.from; i < dataSource.to; i++) {
+      const data = dataSource.technicalIndicatorDataList[i]
       const x = xAxis.convertToPixel(i)
       const y = yAxis.convertToPixel(data.emoji)
       ctx.fillText(data.text, x, y)
@@ -48,7 +49,7 @@ export default function TechnicalIndicatorKLineChart () {
   useEffect(() => {
     kLineChart = init('technical-indicator-k-line')
     // 将自定义技术指标添加到图表
-    kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator)
+    kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator)
     paneId = kLineChart.createTechnicalIndicator('VOL', false)
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {

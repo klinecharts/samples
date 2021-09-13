@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { init, dispose, Chart, CoordinatePoint, AnnotationDrawParams } from 'klinecharts';
+import { init, dispose, Chart, Coordinate, AnnotationDrawParams } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -50,7 +50,7 @@ export class CustomCandleMarkKLineChartComponent implements AfterViewInit, OnDes
         }
       }, {
         point: {
-          timestamp: kLineDataList[kLineDataList.length - 45].timestamp, price: kLineDataList[kLineDataList.length - 45].high
+          timestamp: kLineDataList[kLineDataList.length - 45].timestamp, value: kLineDataList[kLineDataList.length - 45].high
         },
         styles: {
           symbol: {
@@ -62,7 +62,7 @@ export class CustomCandleMarkKLineChartComponent implements AfterViewInit, OnDes
     ]);
   }
 
-  private annotationDrawExtend(ctx: CanvasRenderingContext2D, coordinate: CoordinatePoint, text: string): void {
+  private annotationDrawExtend(ctx: CanvasRenderingContext2D, coordinate: Coordinate, text: string): void {
     ctx.font = '12px Roboto';
     ctx.fillStyle = '#2d6187';
     ctx.strokeStyle = '#2d6187';

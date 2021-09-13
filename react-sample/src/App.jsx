@@ -5,7 +5,7 @@ import CustomThemeKLineChart from './chart/CustomThemeKLineChart'
 import LanguageKLineChart from './chart/LanguageKLineChart'
 import TooltipKLineChart from './chart/TooltipKLineChart'
 import TimezoneKLineChart from './chart/TimezoneKLineChart'
-import DrawGraphicMarkKLineChart from './chart/DrawGraphicMarkKLineChart'
+import DrawShapeKLineChart from './chart/DrawShapeKLineChart'
 import CustomCandleMarkKLineChart from './chart/CustomCandleMarkKLineChart'
 import LoadMoreKLineChart from './chart/LoadMoreKLineChart'
 import UpdateKLineChart from './chart/UpdateKLineChart'
@@ -22,7 +22,7 @@ export default function App () {
       <LanguageKLineChart/>
       <TooltipKLineChart/>
       <TimezoneKLineChart/>
-      <DrawGraphicMarkKLineChart/>
+      <DrawShapeKLineChart/>
       <CustomCandleMarkKLineChart/>
       <LoadMoreKLineChart/>
       <UpdateKLineChart/>

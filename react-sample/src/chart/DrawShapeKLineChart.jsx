@@ -1,39 +1,39 @@
 import React, { useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
-import { checkPointOnSegment } from 'klinecharts/lib/mark/graphicHelper'
+import { checkCoordinateOnSegment } from 'klinecharts/lib/shape/shapeHelper'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
 
 const rect = {
   name: 'rect',
   totalStep: 3,
-  checkMousePointOn: (key, type, points, mousePoint) => {
-    return checkPointOnSegment(points[0], points[1], mousePoint)
+  checkEventCoordinateOnShape: ({ dataSource, eventCoordinate }) => {
+    return checkCoordinateOnSegment(dataSource[0], dataSource[1], eventCoordinate)
   },
-  createGraphicDataSource: (step, tpPoint, xyPoints) => {
-    if (xyPoints.length === 2) {
+  createShapeDataSource: ({ coordinates }) => {
+    if (coordinates.length === 2) {
       return [
         {
           type: 'line',
           isDraw: false,
           isCheck: true,
           dataSource: [
-            [{ ...xyPoints[0] }, { x: xyPoints[1].x, y: xyPoints[0].y }],
-            [{ x: xyPoints[1].x, y: xyPoints[0].y }, { ...xyPoints[1] }],
-            [{ ...xyPoints[1] }, { x: xyPoints[0].x, y: xyPoints[1].y }],
-            [{ x: xyPoints[0].x, y: xyPoints[1].y }, { ...xyPoints[0] }]
+            [{ ...coordinates[0] }, { x: coordinates[1].x, y: coordinates[0].y }],
+            [{ x: coordinates[1].x, y: coordinates[0].y }, { ...coordinates[1] }],
+            [{ ...coordinates[1] }, { x: coordinates[0].x, y: coordinates[1].y }],
+            [{ x: coordinates[0].x, y: coordinates[1].y }, { ...coordinates[0] }]
           ]
         },
         {
           type: 'polygon',
           isDraw: true,
           isCheck: false,
-          style: 'fill',
+          styles: { style: 'fill' },
           dataSource: [[
-            { ...xyPoints[0] },
-            { x: xyPoints[1].x, y: xyPoints[0].y },
-            { ...xyPoints[1] },
-            { x: xyPoints[0].x, y: xyPoints[1].y }
+            { ...coordinates[0] },
+            { x: coordinates[1].x, y: coordinates[0].y },
+            { ...coordinates[1] },
+            { x: coordinates[0].x, y: coordinates[1].y }
           ]]
         },
         {
@@ -41,10 +41,10 @@ const rect = {
           isDraw: true,
           isCheck: false,
           dataSource: [[
-            { ...xyPoints[0] },
-            { x: xyPoints[1].x, y: xyPoints[0].y },
-            { ...xyPoints[1] },
-            { x: xyPoints[0].x, y: xyPoints[1].y }
+            { ...coordinates[0] },
+            { x: coordinates[1].x, y: coordinates[0].y },
+            { ...coordinates[1] },
+            { x: coordinates[0].x, y: coordinates[1].y }
           ]]
         }
       ]
@@ -56,25 +56,25 @@ const rect = {
 const circle = {
   name: 'circle',
   totalStep: 3,
-  checkMousePointOn: (key, type, points, mousePoint) => {
-    const xDis = Math.abs(points.x - mousePoint.x)
-    const yDis = Math.abs(points.y - mousePoint.y)
+  checkEventCoordinateOnShape: ({ dataSource, eventCoordinate }) => {
+    const xDis = Math.abs(dataSource.x - eventCoordinate.x)
+    const yDis = Math.abs(dataSource.y - eventCoordinate.y)
     const r = Math.sqrt(xDis * xDis + yDis * yDis)
-    return Math.abs(r - points.radius) < 3
+    return Math.abs(r - dataSource.radius) < 3
   },
-  createGraphicDataSource: (step, tpPoint, xyPoints) => {
-    if (xyPoints.length === 2) {
-      const xDis = Math.abs(xyPoints[0].x - xyPoints[1].x)
-      const yDis = Math.abs(xyPoints[0].y - xyPoints[1].y)
+  createShapeDataSource: ({ coordinates }) => {
+    if (coordinates.length === 2) {
+      const xDis = Math.abs(coordinates[0].x - coordinates[1].x)
+      const yDis = Math.abs(coordinates[0].y - coordinates[1].y)
       const radius = Math.sqrt(xDis * xDis + yDis * yDis)
       return [
         {
           type: 'arc',
           isDraw: true,
           isCheck: false,
-          style: 'fill',
+          styles: { style: 'fill' },
           dataSource: [
-            { ...xyPoints[0], radius, startAngle: 0, endAngle: Math.PI * 2 }
+            { ...coordinates[0], radius, startAngle: 0, endAngle: Math.PI * 2 }
           ]
         },
         {
@@ -82,7 +82,7 @@ const circle = {
           isDraw: true,
           isCheck: true,
           dataSource: [
-            { ...xyPoints[0], radius, startAngle: 0, endAngle: Math.PI * 2 }
+            { ...coordinates[0], radius, startAngle: 0, endAngle: Math.PI * 2 }
           ]
         }
       ]
@@ -103,12 +103,11 @@ const drawLines = [
 export default function DrawGraphMarkKLineChart () {
   let kLineChart
   useEffect(() => {
-    kLineChart = init('draw-graph-mark-k-line')
-    kLineChart.addCustomGraphicMark(rect)
-    kLineChart.addCustomGraphicMark(circle)
+    kLineChart = init('draw-shape-k-line')
+    kLineChart.addShapeTemplate([rect, circle])
     kLineChart.applyNewData(generatedKLineDataList())
     return () => {
-      dispose('draw-graph-mark-k-line')
+      dispose('draw-shape-k-line')
     }
   }, [])
 
@@ -116,7 +115,7 @@ export default function DrawGraphMarkKLineChart () {
     <Layout
       title="绘图">
       <div
-        id="draw-graph-mark-k-line" className="k-line-chart"/>
+        id="draw-shape-k-line" className="k-line-chart"/>
       <div
         className="k-line-chart-menu-container">
         {
@@ -125,7 +124,7 @@ export default function DrawGraphMarkKLineChart () {
               <button
                 key={key}
                 onClick={_ => {
-                  kLineChart.createGraphicMark(key)
+                  kLineChart.createShape(key)
                 }}>
                 {text}
               </button>
@@ -134,7 +133,7 @@ export default function DrawGraphMarkKLineChart () {
         }
         <button
           onClick={() => {
-            kLineChart.removeGraphicMark()
+            kLineChart.removeShape()
           }}>
           清除
         </button>

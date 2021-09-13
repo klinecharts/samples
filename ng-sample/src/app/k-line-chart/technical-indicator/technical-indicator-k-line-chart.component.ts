@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { init, dispose, Chart, TechnicalIndicator } from 'klinecharts';
+import { init, dispose, Chart, TechnicalIndicatorTemplate, TechnicalIndicatorRenderParams } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -10,7 +10,7 @@ const fruits = [
 ];
 
 // 自定义指标
-const emojiTechnicalIndicator: TechnicalIndicator = {
+const emojiTechnicalIndicator: TechnicalIndicatorTemplate = {
   name: 'EMOJI',
   plots: [
     { key: 'emoji' }
@@ -22,16 +22,12 @@ const emojiTechnicalIndicator: TechnicalIndicator = {
     });
     return result;
   },
-  render: (
-    ctx,
-    { from, to, technicalIndicatorDataList },
-    { barSpace },
-    options, xAxis, yAxis
-  ) => {
-    ctx.font = `${barSpace}px Helvetica Neue`;
+  render: (params: TechnicalIndicatorRenderParams) => {
+    const { ctx, dataSource, viewport, xAxis, yAxis } = params
+    ctx.font = `${viewport.barSpace}px Helvetica Neue`;
     ctx.textAlign = 'center';
-    for (let i = from; i < to; i++) {
-      const data = technicalIndicatorDataList[i];
+    for (let i = dataSource.from; i < dataSource.to; i++) {
+      const data = dataSource.technicalIndicatorDataList[i];
       const x = xAxis.convertToPixel(i);
       const y = yAxis.convertToPixel(data.emoji);
       ctx.fillText(data.text, x, y);
@@ -53,7 +49,7 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
 
   ngAfterViewInit(): void {
     this.kLineChart = init('technical-indicator-k-line');
-    this.kLineChart.addCustomTechnicalIndicator(emojiTechnicalIndicator);
+    this.kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator);
     this.paneId = this.kLineChart.createTechnicalIndicator('VOL', false);
     this.kLineChart.applyNewData(generatedKLineDataList());
   }

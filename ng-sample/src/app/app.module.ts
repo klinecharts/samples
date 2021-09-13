@@ -9,7 +9,7 @@ import { CustomThemeKLineChartComponent } from './k-line-chart/custom-theme/cust
 import { LanguageKLineChartComponent } from './k-line-chart/language/language-k-line-chart.component';
 import { TooltipKLineChartComponent } from './k-line-chart/tooltip/tooltip-k-line-chart.component';
 import { TimezoneKLineChartComponent } from './k-line-chart/timezone/timezone-k-line-chart.component';
-import { DrawGraphicMarkKLineChartComponent } from './k-line-chart/draw-graphic-mark/draw-graphic-mark-k-line-chart.component';
+import { DrawShapeKLineChartComponent } from './k-line-chart/draw-shape/draw-shape-k-line-chart.component';
 import { LoadMoreKLineChartComponent } from './k-line-chart/load-more/load-more-k-line-chart.component';
 import { UpdateKLineChartComponent } from './k-line-chart/update/update-k-line-chart.component';
 import { CustomCandleMarkKLineChartComponent } from './k-line-chart/custom-candle-mark-k-line-chart/custom-candle-mark-k-line-chart.component';
@@ -24,7 +24,7 @@ import { CustomCandleMarkKLineChartComponent } from './k-line-chart/custom-candl
     LanguageKLineChartComponent,
     TooltipKLineChartComponent,
     TimezoneKLineChartComponent,
-    DrawGraphicMarkKLineChartComponent,
+    DrawShapeKLineChartComponent,
     LoadMoreKLineChartComponent,
     UpdateKLineChartComponent,
     CustomCandleMarkKLineChartComponent

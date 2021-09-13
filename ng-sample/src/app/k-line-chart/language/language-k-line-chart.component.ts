@@ -21,10 +21,10 @@ export class LanguageKLineChartComponent implements AfterViewInit, OnDestroy {
       candle: {
         tooltip: {
           labels: language === 'zh-CN'
-            ? ['时间', '开', '收', '高', '低', '成交量']
+            ? ['时间：', '开：', '收：', '高：', '低：', '成交量：']
             : language === 'zh-HK'
-              ? ['時間', '開', '收', '高', '低', '成交量']
-              : ['T', 'O', 'C', 'H', 'L', 'V']
+              ? ['時間：', '開：', '收：', '高：', '低：', '成交量：']
+              : ['T: ', 'O: ', 'C: ', 'H: ', 'L: ', 'V: ']
         }
       }
     });

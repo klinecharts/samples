@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "klinecharts": "^7.3.2",
+    "klinecharts": "^8.0.0-alpha4",
     "vue": "^2.6.11"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@ export default function LoadMoreKLineChart () {
     const kLineChart = init('load-more-k-line')
     kLineChart.applyNewData(generatedKLineDataList(Date.now(), 5000, 200), true)
     kLineChart.loadMore(timestamp => {
+      console.log(timestamp)
       setTimeout(() => {
         const firstData = kLineChart.getDataList()[0]
         kLineChart.applyMoreData(generatedKLineDataList(timestamp, firstData.close, 100), true)
