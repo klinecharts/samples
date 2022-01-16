@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { init, dispose, Chart, TechnicalIndicatorTemplate, TechnicalIndicatorRenderParams } from 'klinecharts';
+import { extension, init, dispose, Chart, TechnicalIndicatorTemplate, TechnicalIndicatorRenderParams } from 'klinecharts';
 
 import generatedKLineDataList from '../../generatedKLineDataList';
 
@@ -35,6 +35,8 @@ const emojiTechnicalIndicator: TechnicalIndicatorTemplate = {
   }
 };
 
+extension.addTechnicalIndicatorTemplate(emojiTechnicalIndicator);
+
 @Component({
   selector: 'app-technical-indicator-k-line-chart',
   templateUrl: './technical-indicator-k-line-chart.component.html',
@@ -49,7 +51,7 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
 
   ngAfterViewInit(): void {
     this.kLineChart = init('technical-indicator-k-line');
-    this.kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator);
+    // this.kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator);
     this.paneId = this.kLineChart.createTechnicalIndicator('VOL', false);
     this.kLineChart.applyNewData(generatedKLineDataList());
   }
