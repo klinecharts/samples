@@ -39,5 +39,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "overrides": {
+    "node-ipc@>9.2.1 <10": "9.2.1",
+    "node-ipc@>10.1.0": "10.1.0"
+  }
 }
