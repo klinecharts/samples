@@ -82,11 +82,11 @@ export default function CustomCandleMarkKLineChart () {
         }
       }, {
         point: {
-          timestamp: kLineDataList[kLineDataList.length - 45].timestamp, price: kLineDataList[kLineDataList.length - 45].high
+          timestamp: kLineDataList[kLineDataList.length - 45].timestamp, value: kLineDataList[kLineDataList.length - 45].high
         },
         styles: {
+          position: 'point',
           symbol: {
-            position: 'point',
             offset: [0, -30]
           }
         }
