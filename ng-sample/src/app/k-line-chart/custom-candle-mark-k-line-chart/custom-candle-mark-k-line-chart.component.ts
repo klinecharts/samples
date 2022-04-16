@@ -53,8 +53,8 @@ export class CustomCandleMarkKLineChartComponent implements AfterViewInit, OnDes
           timestamp: kLineDataList[kLineDataList.length - 45].timestamp, value: kLineDataList[kLineDataList.length - 45].high
         },
         styles: {
+          position: 'point',
           symbol: {
-            position: 'point',
             offset: [0, -30]
           }
         }
