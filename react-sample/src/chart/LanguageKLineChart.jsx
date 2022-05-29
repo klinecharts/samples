@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
@@ -23,50 +23,38 @@ const locals = [
   { key: 'en-US', text: 'English' }
 ]
 
-export default class LanguageKLineChart extends PureComponent {
-  state = {
-    language: 'zh-CN'
-  }
+export default function LanguageKLineChart () {
+  const chart = useRef()
+  const [language, setLanguage] = useState('zh-CN')
 
-  componentDidMount () {
-    this.kLineChart = init('language-k-line')
-    this.kLineChart.applyNewData(generatedKLineDataList())
-  }
+  useEffect(() => {
+    chart.current = init('language-k-line')
+    chart.current.applyNewData(generatedKLineDataList())
+    return () => { dispose('language-k-line') }
+  }, [])
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    if (prevState.language !== this.state.language) {
-      this.kLineChart.setStyleOptions(getLanguageOptions(this.state.language))
-    }
-  }
+  useEffect(() => {
+    chart.current && chart.current.setStyleOptions(getLanguageOptions(language))
+  }, [language])
 
-  componentWillUnmount () {
-    dispose('language-k-line')
-  }
-
-  render () {
-    return (
-      <Layout
-        title="多语言">
-        <div id="language-k-line" className="k-line-chart"/>
-        <div
-          className="k-line-chart-menu-container">
-          {
-            locals.map(({ key, text }) => {
-              return (
-                <button
-                  key={key}
-                  onClick={_ => {
-                    this.setState({
-                      language: key
-                    })
-                  }}>
-                  {text}
-                </button>
-              )
-            })
-          }
-        </div>
-      </Layout>
-    )
-  }
+  return (
+    <Layout
+      title="多语言">
+      <div id="language-k-line" className="k-line-chart"/>
+      <div
+        className="k-line-chart-menu-container">
+        {
+          locals.map(({ key, text }) => {
+            return (
+              <button
+                key={key}
+                onClick={_ => { setLanguage(key) }}>
+                {text}
+              </button>
+            )
+          })
+        }
+      </div>
+    </Layout>
+  )
 }

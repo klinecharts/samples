@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
@@ -37,103 +37,72 @@ const rules = [
   { key: 'none', text: '不显示' }
 ]
 
-export default class TooltipKLineChart extends PureComponent {
-  state = {
-    candleShowType: 'standard',
-    candleShowRule: 'always',
-    technicalIndicatorShowRule: 'always'
-  }
+export default function TooltipKLineChart () {
+  const chart = useRef()
+  const [candleShowType, setCandleShowType] = useState('standard')
+  const [candleShowRule, setCandleShowRule] = useState('always')
+  const [technicalIndicatorShowRule, setTechnicalIndicatorShowRule] = useState('always')
 
-  componentDidMount () {
-    const { candleShowType, candleShowRule, technicalIndicatorShowRule } = this.state
-    this.kLineChart = init('tooltip-k-line')
-    this.kLineChart.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
-    this.kLineChart.createTechnicalIndicator('KDJ', false, { height: 80 })
-    this.kLineChart.setStyleOptions(getTooltipOptions(
+  useEffect(() => {
+    chart.current = init('tooltip-k-line')
+    chart.current.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
+    chart.current.createTechnicalIndicator('KDJ', false, { height: 80 })
+    chart.current.applyNewData(generatedKLineDataList())
+    return () => { dispose('tooltip-k-line') }
+  }, [])
+
+  useEffect(() => {
+    chart.current && chart.current.setStyleOptions(getTooltipOptions(
       candleShowType, candleShowRule, technicalIndicatorShowRule
     ))
-    this.kLineChart.applyNewData(generatedKLineDataList())
-  }
+  }, [candleShowType, candleShowRule, technicalIndicatorShowRule])
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    const { candleShowType, candleShowRule, technicalIndicatorShowRule } = this.state
-    if (
-      prevState.candleShowType !== candleShowType ||
-      prevState.candleShowRule !== candleShowRule ||
-      prevState.technicalIndicatorShowRule !== technicalIndicatorShowRule
-    ) {
-      this.kLineChart.setStyleOptions(getTooltipOptions(candleShowType, candleShowRule, technicalIndicatorShowRule))
-    }
-  }
-
-  componentWillUnmount () {
-    dispose('tooltip-k-line')
-  }
-
-  render () {
-    return (
-      <Layout
-        title="十字光标文字提示">
-        <div id="tooltip-k-line" className="k-line-chart"/>
-        <div
-          className="k-line-chart-menu-container">
-          <span style={{ paddingRight: 10 }}>主图显示类型</span>
-          <button
-            onClick={_ => {
-              this.setState({
-                candleShowType: 'standard'
-              })
-            }}>
-            默认
-          </button>
-          <button
-            onClick={_ => {
-              this.setState({
-                candleShowType: 'rect'
-              })
-            }}>
-            矩形框
-          </button>
-        </div>
-        <div
-          className="k-line-chart-menu-container">
-          <span style={{ paddingRight: 10 }}>k线提示显示规则</span>
-          {
-            rules.map(({ key, text }) => {
-              return (
-                <button
-                  key={key}
-                  onClick={_ => {
-                    this.setState({
-                      candleShowRule: key
-                    })
-                  }}>
-                  {text}
-                </button>
-              )
-            })
-          }
-        </div>
-        <div
-          className="k-line-chart-menu-container">
-          <span style={{ paddingRight: 10 }}>指标提示显示规则</span>
-          {
-            rules.map(({ key, text }) => {
-              return (
-                <button
-                  key={key}
-                  onClick={_ => {
-                    this.setState({
-                      technicalIndicatorShowRule: key
-                    })
-                  }}>
-                  {text}
-                </button>
-              )
-            })
-          }
-        </div>
-      </Layout>
-    )
-  }
+  return (
+    <Layout
+      title="十字光标文字提示">
+      <div id="tooltip-k-line" className="k-line-chart"/>
+      <div
+        className="k-line-chart-menu-container">
+        <span style={{ paddingRight: 10 }}>主图显示类型</span>
+        <button
+          onClick={_ => { setCandleShowType('standard') }}>
+          默认
+        </button>
+        <button
+          onClick={_ => { setCandleShowType('rect') }}>
+          矩形框
+        </button>
+      </div>
+      <div
+        className="k-line-chart-menu-container">
+        <span style={{ paddingRight: 10 }}>k线提示显示规则</span>
+        {
+          rules.map(({ key, text }) => {
+            return (
+              <button
+                key={key}
+                onClick={_ => { setCandleShowRule(key) }}>
+                {text}
+              </button>
+            )
+          })
+        }
+      </div>
+      <div
+        className="k-line-chart-menu-container">
+        <span style={{ paddingRight: 10 }}>指标提示显示规则</span>
+        {
+          rules.map(({ key, text }) => {
+            return (
+              <button
+                key={key}
+                onClick={_ => { setTechnicalIndicatorShowRule(key) }}>
+                {text}
+              </button>
+            )
+          })
+        }
+      </div>
+    </Layout>
+  )
 }

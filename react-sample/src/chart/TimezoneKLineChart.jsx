@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
@@ -10,10 +10,10 @@ const timezones = [
 ]
 
 export default function TimezoneKLineChart () {
-  let kLineChart
+  const chart = useRef()
   useEffect(() => {
-    kLineChart = init('timezone-k-line')
-    kLineChart.applyNewData(generatedKLineDataList())
+    chart.current = init('timezone-k-line')
+    chart.current.applyNewData(generatedKLineDataList())
     return () => {
       dispose('timezone-k-line')
     }
@@ -32,7 +32,7 @@ export default function TimezoneKLineChart () {
               <button
                 key={key}
                 onClick={_ => {
-                  kLineChart.setTimezone(key)
+                  chart.current && chart.current.setTimezone(key)
                 }}>
                 {text}
               </button>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
@@ -13,10 +13,11 @@ const types = [
 ]
 
 export default function ChartTypeKLineChart () {
-  let kLineChart
+  const chart = useRef()
+
   useEffect(() => {
-    kLineChart = init('real-time-k-line')
-    kLineChart.applyNewData(generatedKLineDataList())
+    chart.current = init('real-time-k-line')
+    chart.current.applyNewData(generatedKLineDataList())
     return () => {
       dispose('real-time-k-line')
     }
@@ -34,7 +35,7 @@ export default function ChartTypeKLineChart () {
               <button
                 key={key}
                 onClick={_ => {
-                  kLineChart.setStyleOptions({
+                  chart.current && chart.current.setStyleOptions({
                     candle: {
                       type: key
                     }

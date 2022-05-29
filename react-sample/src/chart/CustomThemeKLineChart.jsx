@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { init, dispose } from 'klinecharts'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
 import Layout from '../Layout'
@@ -101,54 +101,43 @@ const themes = [
   { key: 'light', text: '浅色' }
 ]
 
-export default class CustomThemeKLineChart extends PureComponent {
-  state = {
-    theme: 'light'
-  }
+export default function CustomThemeKLineChart () {
+  const chart = useRef()
+  const [theme, setTheme] = useState('light')
 
-  componentDidMount () {
-    this.kLineChart = init('custom-style-k-line')
-    this.kLineChart.applyNewData(generatedKLineDataList())
-  }
-
-  componentWillUnmount () {
-    dispose('custom-style-k-line')
-  }
-
-  componentDidUpdate (prevProps, prevState, snapshot) {
-    if (prevState.theme !== this.state.theme) {
-      this.kLineChart.setStyleOptions(getThemeOptions(this.state.theme))
+  useEffect(() => {
+    chart.current = init('custom-style-k-line')
+    chart.current.applyNewData(generatedKLineDataList())
+    return () => {
+      dispose('custom-style-k-line')
     }
-  }
+  }, [])
 
-  render () {
-    const { theme } = this.state
-    return (
-      <Layout
-        title="自定义主题">
-        <div
-          id="custom-style-k-line"
-          style={theme === 'dark' ? { backgroundColor: '#1f2126' } : {}}
-          className="k-line-chart"/>
-        <div
-          className="k-line-chart-menu-container">
-          {
-            themes.map(({ key, text }) => {
-              return (
-                <button
-                  key={key}
-                  onClick={_ => {
-                    this.setState({
-                      theme: key
-                    })
-                  }}>
-                  {text}
-                </button>
-              )
-            })
-          }
-        </div>
-      </Layout>
-    )
-  }
+  useEffect(() => {
+    chart.current.setStyleOptions(getThemeOptions(theme))
+  }, [theme])
+
+  return (
+    <Layout
+      title="自定义主题">
+      <div
+        id="custom-style-k-line"
+        style={theme === 'dark' ? { backgroundColor: '#1f2126' } : {}}
+        className="k-line-chart"/>
+      <div
+        className="k-line-chart-menu-container">
+        {
+          themes.map(({ key, text }) => {
+            return (
+              <button
+                key={key}
+                onClick={_ => { setTheme(key) }}>
+                {text}
+              </button>
+            )
+          })
+        }
+      </div>
+    </Layout>
+  )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { init, dispose } from 'klinecharts'
 import { checkCoordinateOnSegment } from 'klinecharts/lib/shape/shapeHelper'
 import generatedKLineDataList from '../utils/generatedKLineDataList'
@@ -101,11 +101,11 @@ const drawLines = [
 ]
 
 export default function DrawGraphMarkKLineChart () {
-  let kLineChart
+  const chart = useRef()
   useEffect(() => {
-    kLineChart = init('draw-shape-k-line')
-    kLineChart.addShapeTemplate([rect, circle])
-    kLineChart.applyNewData(generatedKLineDataList())
+    chart.current = init('draw-shape-k-line')
+    chart.current.addShapeTemplate([rect, circle])
+    chart.current.applyNewData(generatedKLineDataList())
     return () => {
       dispose('draw-shape-k-line')
     }
@@ -124,7 +124,7 @@ export default function DrawGraphMarkKLineChart () {
               <button
                 key={key}
                 onClick={_ => {
-                  kLineChart.createShape(key)
+                  chart.current && chart.current.createShape(key)
                 }}>
                 {text}
               </button>
@@ -133,7 +133,7 @@ export default function DrawGraphMarkKLineChart () {
         }
         <button
           onClick={() => {
-            kLineChart.removeShape()
+            chart.current && chart.current.removeShape()
           }}>
           清除
         </button>
