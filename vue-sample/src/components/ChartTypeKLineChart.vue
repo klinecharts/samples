@@ -46,7 +46,7 @@ export default {
       })
     }
   },
-  destroyed: function () {
+  unmounted: function () {
     dispose('chart-type-k-line')
   }
 }
