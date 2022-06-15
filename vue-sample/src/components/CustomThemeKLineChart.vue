@@ -134,7 +134,7 @@
         this.kLineChart.setStyleOptions(getThemeOptions(theme))
       }
     },
-    destroyed: function () {
+    unmounted: function () {
       dispose('custom-theme-k-line')
     }
   }
