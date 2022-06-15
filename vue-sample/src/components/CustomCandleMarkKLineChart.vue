@@ -100,7 +100,7 @@ export default {
       }
     ])
   },
-  destroyed: function () {
+  unmounted: function () {
     dispose('custom-candle-mark-k-line')
   }
 }
