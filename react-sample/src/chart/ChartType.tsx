@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { init, dispose } from 'klinecharts'
-import generatedKLineDataList from '../utils/generatedKLineDataList'
+import { init, dispose, Chart, CandleType,  } from 'klinecharts'
+import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
 const types = [
@@ -12,12 +12,12 @@ const types = [
   { key: 'area', text: '面积图' }
 ]
 
-export default function ChartTypeKLineChart () {
-  const chart = useRef()
+export default function ChartType () {
+  const chart = useRef<Chart | null>()
 
   useEffect(() => {
     chart.current = init('real-time-k-line')
-    chart.current.applyNewData(generatedKLineDataList())
+    chart.current?.applyNewData(generatedDataList())
     return () => {
       dispose('real-time-k-line')
     }
@@ -35,9 +35,9 @@ export default function ChartTypeKLineChart () {
               <button
                 key={key}
                 onClick={_ => {
-                  chart.current && chart.current.setStyleOptions({
+                  chart.current && chart.current.setStyles({
                     candle: {
-                      type: key
+                      type: key as CandleType
                     }
                   })
                 }}>

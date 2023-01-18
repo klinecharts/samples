@@ -1,31 +1,34 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { init, dispose } from 'klinecharts'
-import generatedKLineDataList from '../utils/generatedKLineDataList'
+import { init, dispose, Chart, KLineData, TooltipShowRule, TooltipShowType } from 'klinecharts'
+import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
-function getTooltipOptions (candleShowType, candleShowRule, technicalIndicatorShowRule) {
+function getTooltipOptions (candleShowType: TooltipShowType, candleShowRule: TooltipShowRule, indicatorShowRule: TooltipShowRule) {
   return {
     candle: {
       tooltip: {
         showType: candleShowType,
         showRule: candleShowRule,
         labels: ['开盘价：', '收盘价：', '涨跌幅：'],
-        values: kLineData => {
+        custom: (kLineData: KLineData) => {
           const change = (kLineData.close - kLineData.open) / kLineData.open * 100
           return [
-            { value: kLineData.open.toFixed(2) },
-            { value: kLineData.close.toFixed(2) },
+            { title: 'open', value: kLineData.open.toFixed(2) },
+            { title: 'close', value: kLineData.close.toFixed(2) },
             {
-              value: `${change.toFixed(2)}%`,
-              color: change < 0 ? '#EF5350' : '#26A69A'
+              title: 'close',
+              value: {
+                text: `${change.toFixed(2)}%`,
+                color: change < 0 ? '#EF5350' : '#26A69A'
+              }
             }
           ]
         }
       }
     },
-    technicalIndicator: {
+    indicator: {
       tooltip: {
-        showRule: technicalIndicatorShowRule
+        showRule: indicatorShowRule
       }
     }
   }
@@ -38,24 +41,24 @@ const rules = [
 ]
 
 export default function TooltipKLineChart () {
-  const chart = useRef()
+  const chart = useRef<Chart | null>()
   const [candleShowType, setCandleShowType] = useState('standard')
   const [candleShowRule, setCandleShowRule] = useState('always')
-  const [technicalIndicatorShowRule, setTechnicalIndicatorShowRule] = useState('always')
+  const [indicatorShowRule, setIndicatorShowRule] = useState('always')
 
   useEffect(() => {
     chart.current = init('tooltip-k-line')
-    chart.current.createTechnicalIndicator('MA', false, { id: 'candle_pane' })
-    chart.current.createTechnicalIndicator('KDJ', false, { height: 80 })
-    chart.current.applyNewData(generatedKLineDataList())
+    chart.current?.createIndicator('MA', false, { id: 'candle_pane' })
+    chart.current?.createIndicator('KDJ', false, { id: '', height: 80 })
+    chart.current?.applyNewData(generatedDataList())
     return () => { dispose('tooltip-k-line') }
   }, [])
 
   useEffect(() => {
-    chart.current && chart.current.setStyleOptions(getTooltipOptions(
-      candleShowType, candleShowRule, technicalIndicatorShowRule
+    chart.current?.setStyles(getTooltipOptions(
+      candleShowType as TooltipShowType, candleShowRule as TooltipShowRule, indicatorShowRule as TooltipShowRule
     ))
-  }, [candleShowType, candleShowRule, technicalIndicatorShowRule])
+  }, [candleShowType, candleShowRule, indicatorShowRule])
 
   return (
     <Layout
@@ -81,7 +84,7 @@ export default function TooltipKLineChart () {
             return (
               <button
                 key={key}
-                onClick={_ => { setCandleShowRule(key) }}>
+                onClick={_ => { setCandleShowRule(key as TooltipShowRule) }}>
                 {text}
               </button>
             )
@@ -96,7 +99,7 @@ export default function TooltipKLineChart () {
             return (
               <button
                 key={key}
-                onClick={_ => { setTechnicalIndicatorShowRule(key) }}>
+                onClick={_ => { setIndicatorShowRule(key as TooltipShowRule) }}>
                 {text}
               </button>
             )

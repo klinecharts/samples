@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { init, dispose } from 'klinecharts'
-import generatedKLineDataList from '../utils/generatedKLineDataList'
+import { init, dispose, Chart, registerLocale } from 'klinecharts'
+import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
-function getLanguageOptions (language) {
-  return {
-    candle: {
-      tooltip: {
-        labels: language === 'zh-CN'
-          ? ['时间：', '开：', '收：', '高：', '低：', '成交量：']
-          : language === 'zh-HK'
-            ? ['時間：', '開：', '收：', '高：', '低：', '成交量：']
-            : ['T: ', 'O: ', 'C: ', 'H: ', 'L: ', 'V: ']
-      }
-    }
-  }
-}
+registerLocale('zh-HK', {
+  time: '時間：',
+  open: '開：',
+  high: '高：',
+  low: '低：',
+  close: '收：',
+  volume: '成交量：'
+})
 
 const locals = [
   { key: 'zh-CN', text: '简体中文' },
@@ -23,18 +18,18 @@ const locals = [
   { key: 'en-US', text: 'English' }
 ]
 
-export default function LanguageKLineChart () {
-  const chart = useRef()
+export default function Language () {
+  const chart = useRef<Chart | null>()
   const [language, setLanguage] = useState('zh-CN')
 
   useEffect(() => {
     chart.current = init('language-k-line')
-    chart.current.applyNewData(generatedKLineDataList())
+    chart.current?.applyNewData(generatedDataList())
     return () => { dispose('language-k-line') }
   }, [])
 
   useEffect(() => {
-    chart.current && chart.current.setStyleOptions(getLanguageOptions(language))
+    chart.current && chart.current.setLocale(language)
   }, [language])
 
   return (

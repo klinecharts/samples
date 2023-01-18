@@ -1,6 +1,11 @@
 import React from 'react'
 
-export default function Layout ({ title, children }) {
+export interface LayoutProps {
+  title: string
+  children: React.ReactNode
+}
+
+const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   return (
     <div
       className="k-line-chart-container">
@@ -10,3 +15,6 @@ export default function Layout ({ title, children }) {
     </div>
   )
 }
+
+
+export default Layout

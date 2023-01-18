@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { init, dispose } from 'klinecharts'
-import generatedKLineDataList from '../utils/generatedKLineDataList'
+import { init, dispose, registerIndicator, Chart } from 'klinecharts'
+import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
 const fruits = [
@@ -9,49 +9,53 @@ const fruits = [
   '🍍', '🥥', '🥝', '🥭', '🥑', '🍏'
 ]
 
+interface EmojiEntity {
+  emoji: number
+  text: string
+}
+
 // 自定义指标
-const emojiTechnicalIndicator = {
+registerIndicator<EmojiEntity>({
   name: 'EMOJI',
-  plots: [
+  figures: [
     { key: 'emoji' }
   ],
-  calcTechnicalIndicator: (kLineDataList) => {
-    const result = []
-    kLineDataList.forEach(kLineData => {
-      result.push({ emoji: kLineData.close, text: fruits[Math.floor(Math.random() * 17)] })
-    })
-    return result
+  calc: (kLineDataList) => {
+    return kLineDataList.map(kLineData => ({ emoji: kLineData.close, text: fruits[Math.floor(Math.random() * 17)] }))
   },
-  render: ({
+  draw: ({
     ctx,
-    dataSource,
-    viewport,
+    barSpace,
+    visibleRange,
+    indicator,
     xAxis,
     yAxis
   }) => {
-    ctx.font = `${viewport.barSpace}px Helvetica Neue`
+    const { from, to } = visibleRange
+
+    ctx.font = `${barSpace.gapBar}px Helvetica Neue`
     ctx.textAlign = 'center'
-    for (let i = dataSource.from; i < dataSource.to; i++) {
-      const data = dataSource.technicalIndicatorDataList[i]
+    const result = indicator.result
+    for (let i = from; i < to; i++) {
+      const data = result[i]
       const x = xAxis.convertToPixel(i)
       const y = yAxis.convertToPixel(data.emoji)
       ctx.fillText(data.text, x, y)
     }
+    return false
   }
-}
+})
 
-const mainTechnicalIndicatorTypes = ['MA', 'EMA', 'SAR']
-const subTechnicalIndicatorTypes = ['VOL', 'MACD', 'KDJ']
+const mainIndicators = ['MA', 'EMA', 'SAR']
+const subIndicators = ['VOL', 'MACD', 'KDJ']
 
-export default function TechnicalIndicatorKLineChart () {
-  const chart = useRef()
-  const paneId = useRef()
+export default function Indicator () {
+  const chart = useRef<Chart | null>()
+  const paneId = useRef<string>('')
   useEffect(() => {
     chart.current = init('technical-indicator-k-line')
-    // 将自定义技术指标添加到图表
-    chart.current.addTechnicalIndicatorTemplate(emojiTechnicalIndicator)
-    paneId.current = chart.current.createTechnicalIndicator('VOL', false)
-    chart.current.applyNewData(generatedKLineDataList())
+    paneId.current = chart.current?.createIndicator('VOL', false) as string
+    chart.current?.applyNewData(generatedDataList())
     return () => {
       dispose('technical-indicator-k-line')
     }
@@ -64,12 +68,12 @@ export default function TechnicalIndicatorKLineChart () {
         className="k-line-chart-menu-container">
         <span style={{ paddingRight: 10 }}>主图指标</span>
         {
-          mainTechnicalIndicatorTypes.map(type => {
+          mainIndicators.map(type => {
             return (
               <button
                 key={type}
                 onClick={_ => {
-                  chart.current && chart.current.createTechnicalIndicator(type, false, { id: 'candle_pane' })
+                  chart.current?.createIndicator(type, false, { id: 'candle_pane' })
                 }}>
                 {type}
               </button>
@@ -78,18 +82,18 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            chart.current && chart.current.createTechnicalIndicator('EMOJI', true, { id: 'candle_pane' })
+            chart.current?.createIndicator('EMOJI', true, { id: 'candle_pane' })
           }}>
           自定义
         </button>
         <span style={{ paddingRight: 10, paddingLeft: 12 }}>副图指标</span>
         {
-          subTechnicalIndicatorTypes.map(type => {
+          subIndicators.map(type => {
             return (
               <button
                 key={type}
                 onClick={_ => {
-                  chart.current && chart.current.createTechnicalIndicator(type, false, { id: paneId.current })
+                  chart.current?.createIndicator(type, false, { id: paneId.current })
                 }}>
                 {type}
               </button>
@@ -98,7 +102,7 @@ export default function TechnicalIndicatorKLineChart () {
         }
         <button
           onClick={_ => {
-            chart.current && chart.current.createTechnicalIndicator('EMOJI', false, { id: paneId.current })
+            chart.current?.createIndicator('EMOJI', false, { id: paneId.current })
           }}>
           自定义
         </button>

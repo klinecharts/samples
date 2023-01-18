@@ -1,9 +1,13 @@
-export default function (baseTimestamp = Date.now(), basePrice = 5000, dataSize = 800) {
-  const dataList = []
-  let timestamp = Math.floor(baseTimestamp / 60 / 1000) * 60 * 1000
-  let baseValue = basePrice
+import { KLineData } from "klinecharts"
+
+function generatedDataList (baseTimestamp?: number, basePrice?: number, dataSize?: number) {
+
+  const dataList: KLineData[] = []
+  let timestamp = Math.floor((baseTimestamp ?? Date.now()) / 60 / 1000) * 60 * 1000
+  let baseValue = basePrice ?? 5000
+  const length = dataSize ?? 800
   const prices = []
-  for (let i = 0; i < dataSize; i++) {
+  for (let i = 0; i < length; i++) {
     baseValue = baseValue + Math.random() * 20 - 10
     for (let j = 0; j < 4; j++) {
       prices[j] = (Math.random() - 0.5) * 12 + baseValue
@@ -15,7 +19,7 @@ export default function (baseTimestamp = Date.now(), basePrice = 5000, dataSize 
       closeIdx++
     }
     const volume = Math.random() * 50 + 10
-    const kLineModel = {
+    const kLineData: KLineData = {
       open: prices[openIdx],
       low: prices[0],
       high: prices[3],
@@ -24,8 +28,10 @@ export default function (baseTimestamp = Date.now(), basePrice = 5000, dataSize 
       timestamp
     }
     timestamp -= 60 * 1000
-    kLineModel.turnover = (kLineModel.open + kLineModel.close + kLineModel.high + kLineModel.low) / 4 * volume
-    dataList.unshift(kLineModel)
+    kLineData.turnover = (kLineData.open + kLineData.close + kLineData.high + kLineData.low) / 4 * volume
+    dataList.unshift(kLineData)
   }
   return dataList
 }
+
+export default generatedDataList
