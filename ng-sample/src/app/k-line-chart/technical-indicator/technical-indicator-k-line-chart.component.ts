@@ -54,6 +54,21 @@ export class TechnicalIndicatorKLineChartComponent implements AfterViewInit, OnD
     // this.kLineChart.addTechnicalIndicatorTemplate(emojiTechnicalIndicator);
     this.paneId = this.kLineChart.createTechnicalIndicator('VOL', false);
     this.kLineChart.applyNewData(generatedKLineDataList());
+    abstract class Circle {
+      x: number = 100
+      on () {
+        this.in(this)
+      }
+      abstract in (c: Circle): void
+    }
+
+    class Circle1 extends Circle {
+      in(c: Circle1): void {
+      }
+      y: number = 9
+    }
+
+    new Circle1().on()
   }
 
   setCandleTechnicalIndicator(type) {
