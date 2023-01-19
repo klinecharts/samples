@@ -53,17 +53,17 @@ export default function Indicator () {
   const chart = useRef<Chart | null>()
   const paneId = useRef<string>('')
   useEffect(() => {
-    chart.current = init('technical-indicator-k-line')
+    chart.current = init('indicator-k-line')
     paneId.current = chart.current?.createIndicator('VOL', false) as string
     chart.current?.applyNewData(generatedDataList())
     return () => {
-      dispose('technical-indicator-k-line')
+      dispose('indicator-k-line')
     }
   }, [])
   return (
     <Layout
       title="技术指标">
-      <div id="technical-indicator-k-line" className="k-line-chart"/>
+      <div id="indicator-k-line" className="k-line-chart"/>
       <div
         className="k-line-chart-menu-container">
         <span style={{ paddingRight: 10 }}>主图指标</span>

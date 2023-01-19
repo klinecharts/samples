@@ -1,33 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+
 import { LayoutComponent } from './components/layout.component';
-import { ChartTypeKLineChartComponent } from './k-line-chart/chart-type/chart-type-k-line-chart.component';
-import { TechnicalIndicatorKLineChartComponent } from './k-line-chart/technical-indicator/technical-indicator-k-line-chart.component';
-import { CustomThemeKLineChartComponent } from './k-line-chart/custom-theme/custom-theme-k-line-chart.component';
-import { LanguageKLineChartComponent } from './k-line-chart/language/language-k-line-chart.component';
-import { TooltipKLineChartComponent } from './k-line-chart/tooltip/tooltip-k-line-chart.component';
-import { TimezoneKLineChartComponent } from './k-line-chart/timezone/timezone-k-line-chart.component';
-import { DrawShapeKLineChartComponent } from './k-line-chart/draw-shape/draw-shape-k-line-chart.component';
-import { LoadMoreKLineChartComponent } from './k-line-chart/load-more/load-more-k-line-chart.component';
-import { UpdateKLineChartComponent } from './k-line-chart/update/update-k-line-chart.component';
-import { CustomCandleMarkKLineChartComponent } from './k-line-chart/custom-candle-mark-k-line-chart/custom-candle-mark-k-line-chart.component';
+import { ChartTypeComponent } from './components/chart-type.component';
+import { ThemeComponent } from './components/theme.component';
+import { OverlayComponent } from './components/overlay.component';
+import { LanguageComponent } from './components/language.component';
+import { LoadMoreComponent } from './components/load-more.component';
+import { IndicatorComponent } from './components/indicator.component';
+import { TimezoneComponent } from './components/timezone.component';
+import { TooltipComponent } from './components/tooltip.component';
+import { UpdateComponent } from './components/update.component';
+import { YAxisComponent } from './components/y-axis.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    ChartTypeKLineChartComponent,
-    TechnicalIndicatorKLineChartComponent,
-    CustomThemeKLineChartComponent,
-    LanguageKLineChartComponent,
-    TooltipKLineChartComponent,
-    TimezoneKLineChartComponent,
-    DrawShapeKLineChartComponent,
-    LoadMoreKLineChartComponent,
-    UpdateKLineChartComponent,
-    CustomCandleMarkKLineChartComponent
+    ChartTypeComponent,
+    ThemeComponent,
+    OverlayComponent,
+    LanguageComponent,
+    LoadMoreComponent,
+    IndicatorComponent,
+    TimezoneComponent,
+    TooltipComponent,
+    UpdateComponent,
+    YAxisComponent
   ],
   imports: [
     BrowserModule

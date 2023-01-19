@@ -5,5 +5,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './layout.component.html'
 })
 export class LayoutComponent {
-  @Input() title: string;
+  @Input()
+  title!: string;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ChartType from './chart/ChartType'
 import Indicator from './chart/Indicator'
 import Theme from './chart/Theme'
+import YAxis from './chart/YAxis'
 import Language from './chart/Language'
 import Tooltip from './chart/Tooltip'
 import Timezone from './chart/Timezone'
@@ -16,11 +17,12 @@ function App() {
     <div
       className="app">
       <ChartType/>
-      <Indicator/>
       <Theme/>
+      <YAxis/>
       <Language/>
       <Tooltip/>
       <Timezone/>
+      <Indicator/>
       <Overlay/>
       <LoadMore/>
       <Update/>

@@ -1,0 +1,26 @@
+<app-layout title="技术指标">
+  <div id="indicator-k-line" class="k-line-chart"></div>
+  <div
+    class="k-line-chart-menu-container">
+    <span style="padding-right: 10px">主图指标</span>
+    <button
+      *ngFor="let type of mainIndicators"
+      (click)="setMainIndicator(type)">
+      {{type}}
+    </button>
+    <button
+      (click)="setMainIndicator('EMOJI')">
+      自定义
+    </button>
+    <span style="padding-right: 10px;padding-left: 12px">副图指标</span>
+    <button
+      *ngFor="let type of subIndicators"
+      (click)="setSubIndicator(type)">
+      {{type}}
+    </button>
+    <button
+      (click)="setSubIndicator('EMOJI')">
+      自定义
+    </button>
+  </div>
+</app-layout>

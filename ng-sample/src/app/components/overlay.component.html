@@ -1,0 +1,22 @@
+<app-layout title="覆盖物">
+  <div id="overlay-k-line" class="k-line-chart"></div>
+  <div class="k-line-chart-menu-container">
+    <button
+      (click)="createAnnotation()">
+      内置注解
+    </button>
+    <button
+      (click)="createTag()">
+      内置标签
+    </button>
+    <button
+      *ngFor="let overlay of overlays"
+      (click)="setOverlayType(overlay.key)">
+      {{overlay.text}}
+    </button>
+    <button
+      (click)="removeAllOverlay()">
+      清除
+    </button>
+  </div>
+</app-layout>

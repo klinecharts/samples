@@ -1,6 +1,6 @@
 {
-  "name": "react18-sample",
-  "version": "0.1.0",
+  "name": "react-sample",
+  "version": "9.x",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

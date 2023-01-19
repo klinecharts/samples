@@ -1,0 +1,14 @@
+<app-layout title="主题">
+  <div id="theme-k-line" class="k-line-chart" [ngStyle]="{'backgroundColor': theme === 'dark' ? '#1f2126' : ''}"></div>
+  <div
+    class="k-line-chart-menu-container">
+    <button
+      (click)="setTheme('dark')">
+      深色
+    </button>
+    <button
+      (click)="setTheme('light')">
+      浅色
+    </button>
+  </div>
+</app-layout>

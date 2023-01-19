@@ -13,10 +13,10 @@ export default function CustomThemeKLineChart () {
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    chart.current = init('custom-style-k-line')
+    chart.current = init('style-k-line')
     chart.current?.applyNewData(generatedDataList())
     return () => {
-      dispose('custom-style-k-line')
+      dispose('style-k-line')
     }
   }, [])
 
@@ -26,9 +26,9 @@ export default function CustomThemeKLineChart () {
 
   return (
     <Layout
-      title="自定义主题">
+      title="主题">
       <div
-        id="custom-style-k-line"
+        id="style-k-line"
         style={theme === 'dark' ? { backgroundColor: '#1f2126' } : {}}
         className="k-line-chart"/>
       <div

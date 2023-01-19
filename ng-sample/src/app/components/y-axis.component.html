@@ -1,0 +1,18 @@
+<app-layout title="Y轴">
+  <div id="y-axis-k-line" class="k-line-chart"></div>
+  <div
+    class="k-line-chart-menu-container">
+    <button
+      (click)="setType('normal')">
+      线性轴
+    </button>
+    <button
+      (click)="setType('percentage')">
+      百分比轴
+    </button>
+    <button
+      (click)="setType('log')">
+      对数轴
+    </button>
+  </div>
+</app-layout>

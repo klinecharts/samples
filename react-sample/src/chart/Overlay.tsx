@@ -31,8 +31,6 @@ registerOverlay({
 })
 
 const overlays = [
-  { key: 'simpleAnnotation', text: '内置注解' },
-  { key: 'simpleAnnotation', text: '内置标签' },
   { key: 'priceLine', text: '内置价格线' },
   { key: 'circle', text: '自定义圆' }
 ]
@@ -40,10 +38,10 @@ const overlays = [
 export default function DrawGraphMarkKLineChart () {
   const chart = useRef<Chart | null>()
   useEffect(() => {
-    chart.current = init('draw-shape-k-line')
+    chart.current = init('overlay-k-line')
     chart.current?.applyNewData(generatedDataList())
     return () => {
-      dispose('draw-shape-k-line')
+      dispose('overlay-k-line')
     }
   }, [])
 
@@ -51,7 +49,7 @@ export default function DrawGraphMarkKLineChart () {
     <Layout
       title="覆盖物">
       <div
-        id="draw-shape-k-line" className="k-line-chart"/>
+        id="overlay-k-line" className="k-line-chart"/>
       <div
         className="k-line-chart-menu-container">
         <button

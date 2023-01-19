@@ -9,14 +9,13 @@ function getTooltipOptions (candleShowType: TooltipShowType, candleShowRule: Too
       tooltip: {
         showType: candleShowType,
         showRule: candleShowRule,
-        labels: ['开盘价：', '收盘价：', '涨跌幅：'],
         custom: (kLineData: KLineData) => {
           const change = (kLineData.close - kLineData.open) / kLineData.open * 100
           return [
             { title: 'open', value: kLineData.open.toFixed(2) },
             { title: 'close', value: kLineData.close.toFixed(2) },
             {
-              title: 'close',
+              title: 'Change: ',
               value: {
                 text: `${change.toFixed(2)}%`,
                 color: change < 0 ? '#EF5350' : '#26A69A'
