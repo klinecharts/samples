@@ -22,7 +22,7 @@ export class TooltipComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.chart = init('tooltip-k-line');
     this.chart?.createIndicator('MA', false, { id: 'candle_pane' });
-    this.chart?.createIndicator('KDJ', false, { height: 60, id: '' });
+    this.chart?.createIndicator('KDJ', false, { height: 60 });
     this.chart?.applyNewData(generatedDataList());
   }
 

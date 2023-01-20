@@ -76,8 +76,7 @@ export default {
         points: [
           {
             timestamp: data.timestamp,
-            value: data.high,
-            dataIndex: dataList.length - 20,
+            value: data.high
           },
         ],
       });
@@ -88,7 +87,7 @@ export default {
       this.chart.createOverlay({
         name: "simpleTag",
         extendData: "标签标签",
-        points: [{ value: data.high, dataIndex: dataList.length - 10 }],
+        points: [{ value: data.high }],
       });
     },
     removeAllOverlay() {

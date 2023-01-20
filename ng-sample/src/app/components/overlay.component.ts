@@ -62,8 +62,7 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
       points: [
         {
           timestamp: data.timestamp,
-          value: data.high,
-          dataIndex: dataList.length - 20,
+          value: data.high
         },
       ],
     });
@@ -75,7 +74,7 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
     this.chart?.createOverlay({
       name: "simpleTag",
       extendData: "标签标签",
-      points: [{ value: data.high, dataIndex: dataList.length - 10 }],
+      points: [{ value: data.high }],
     });
   }
 

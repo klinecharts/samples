@@ -48,7 +48,7 @@ export default function TooltipKLineChart () {
   useEffect(() => {
     chart.current = init('tooltip-k-line')
     chart.current?.createIndicator('MA', false, { id: 'candle_pane' })
-    chart.current?.createIndicator('KDJ', false, { id: '', height: 80 })
+    chart.current?.createIndicator('KDJ', false, { height: 80 })
     chart.current?.applyNewData(generatedDataList())
     return () => { dispose('tooltip-k-line') }
   }, [])

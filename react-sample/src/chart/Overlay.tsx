@@ -59,7 +59,7 @@ export default function DrawGraphMarkKLineChart () {
             chart.current?.createOverlay({
               name: 'simpleAnnotation',
               extendData: '注解注解注解',
-              points: [{ timestamp: data.timestamp, value: data.high, dataIndex: dataList.length - 20 }]
+              points: [{ timestamp: data.timestamp, value: data.high }]
             })
           }}>
           内置注解
@@ -71,7 +71,7 @@ export default function DrawGraphMarkKLineChart () {
             chart.current?.createOverlay({
               name: 'simpleTag',
               extendData: '标签标签',
-              points: [{ value: data.high, dataIndex: dataList.length - 10 }]
+              points: [{ value: data.high }]
             })
           }}>
           内置标签

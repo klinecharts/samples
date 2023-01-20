@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "klinecharts": "^9.0.0-alpha5",
+    "klinecharts": "^9.0.0-alpha6",
     "vue": "^3.2.45"
   },
   "devDependencies": {
