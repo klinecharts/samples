@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { init, dispose, Chart, CandleType,  } from 'klinecharts'
+import { init, dispose, Chart, CandleType, LineType } from 'klinecharts'
 import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
@@ -16,7 +16,9 @@ export default function ChartType () {
   const chart = useRef<Chart | null>()
 
   useEffect(() => {
-    chart.current = init('real-time-k-line')
+    chart.current = init('real-time-k-line', {
+    styles: { grid: { horizontal: { style: LineType.Dashed } } }
+    })
     chart.current?.applyNewData(generatedDataList())
     return () => {
       dispose('real-time-k-line')

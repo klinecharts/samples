@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { init, dispose, Chart, Nullable, KLineData, TooltipShowRule, TooltipShowType } from 'klinecharts';
+import { init, dispose, Chart, Nullable, CandleTooltipCustomCallbackData, TooltipShowRule, TooltipShowType } from 'klinecharts';
 
 import generatedDataList from '../generatedDataList';
 
@@ -32,21 +32,22 @@ export class TooltipComponent implements AfterViewInit, OnDestroy {
         tooltip: {
           showType: candleShowType as TooltipShowType,
           showRule: candleShowRule as TooltipShowRule,
-          custom: function (kLineData: KLineData) {
-            const change =
-              ((kLineData.close - kLineData.open) / kLineData.open) * 100;
+          custom: (data: CandleTooltipCustomCallbackData) => {
+            const { prev, current } = data
+            const prevClose = (prev?.close ?? current.open)
+            const change = (current.close - prevClose) / prevClose * 100
             return [
-              { title: "open", value: kLineData.open.toFixed(2) },
-              { title: "close", value: kLineData.close.toFixed(2) },
+              { title: 'open', value: current.open.toFixed(2) },
+              { title: 'close', value: current.close.toFixed(2) },
               {
-                title: "Change: ",
+                title: 'Change: ',
                 value: {
                   text: `${change.toFixed(2)}%`,
-                  color: change < 0 ? "#EF5350" : "#26A69A",
-                },
-              },
-            ];
-          },
+                  color: change < 0 ? '#EF5350' : '#26A69A'
+                }
+              }
+            ]
+          }
         }
       },
       technicalIndicator: {

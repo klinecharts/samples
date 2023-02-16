@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { init, dispose, Chart, KLineData, TooltipShowRule, TooltipShowType } from 'klinecharts'
+import { init, dispose, Chart, TooltipShowRule, TooltipShowType, CandleTooltipCustomCallbackData } from 'klinecharts'
 import generatedDataList from '../generatedDataList'
 import Layout from '../Layout'
 
@@ -9,11 +9,13 @@ function getTooltipOptions (candleShowType: TooltipShowType, candleShowRule: Too
       tooltip: {
         showType: candleShowType,
         showRule: candleShowRule,
-        custom: (kLineData: KLineData) => {
-          const change = (kLineData.close - kLineData.open) / kLineData.open * 100
+        custom: (data: CandleTooltipCustomCallbackData) => {
+          const { prev, current } = data
+          const prevClose = (prev?.close ?? current.open)
+          const change = (current.close - prevClose) / prevClose * 100
           return [
-            { title: 'open', value: kLineData.open.toFixed(2) },
-            { title: 'close', value: kLineData.close.toFixed(2) },
+            { title: 'open', value: current.open.toFixed(2) },
+            { title: 'close', value: current.close.toFixed(2) },
             {
               title: 'Change: ',
               value: {
