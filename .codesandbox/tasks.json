@@ -8,6 +8,14 @@
       "name": "cd react-sample && npm install && npm run start",
       "command": "cd react-sample && npm install && npm run start",
       "runAtStart": true
+    },
+    "npm run vue-sample": {
+      "name": "cd vue-sample && npm install && npm run start",
+      "command": "cd vue-sample && npm install && npm run start"
+    },
+    "npm run ng-sample": {
+      "name": "cd ng-sample && npm install && npm run start",
+      "command": "cd ng-sample && npm install && npm run start"
     }
   }
 }
